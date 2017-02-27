@@ -9,15 +9,15 @@ First, set up your virtual environment and install the requirements:
 
     $ virtualenv venv
     $ . venv/bin/activate
+    $ pip install --upgrade .
     $ pip install -r requirements.txt
 
 To run, simply:
 
-    $ . env/env/activate
+    $ . env/bin/activate
     $ python bin/somescript.py
 
 ## Contributing
-
 
 Please run `pip freeze > requirements.txt` when making code changes, so we get any updated
 library requirements along with your code.
