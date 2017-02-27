@@ -16,3 +16,8 @@ To run, simply:
     $ . env/env/activate
     $ python bin/somescript.py
 
+## Contributing
+
+
+Pleaee run `pip freeze > requirements.txt` when making code changes, so we get any updated
+library requirements along with your code.
