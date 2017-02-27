@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Fetches spreadsheets from Google Docs in preparation for consumption by our services.
 # This allows for changes to be reviewed before they're committed, and track long-term
 # changes.

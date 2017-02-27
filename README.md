@@ -3,19 +3,28 @@
 This code that powers the UN Office for the Coordination of Humanitarian Affairs (UN-OCHA)
 Taxnonomy as a Service APIs.
 
-## Running this code
+## Building the code
 
-First, set up your virtual environment and install the requirements:
+The easy way:
+
+    $ make
+
+The harder way:
 
     $ virtualenv venv
     $ . venv/bin/activate
     $ pip install --upgrade .
     $ pip install -r requirements.txt
 
-To run, simply:
+# Running the code:
+
+Activate the virtual environment:
 
     $ . env/bin/activate
-    $ python bin/somescript.py
+
+Then run scripts from the `bin` directory:
+
+    $ bin/fetch.py
 
 ## Contributing
 
