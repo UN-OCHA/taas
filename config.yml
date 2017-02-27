@@ -1,0 +1,16 @@
+sources:
+
+    # This maps directly to the API URL
+    functional_roles:
+
+        # Extracted from the spreadsheet URL
+        key: 1c9wehuauQAAegElIRI6vhWktKSI-PcPjHHiXdqASonk
+
+        # Sheet number. Extract from the spreadsheet URL as well.
+        gid: 0
+
+        # Mapping of column names -> API fields
+        # Columns that aren't mentioned get ignored.
+        mapping:
+            ID: id
+            Preferred Term: label
