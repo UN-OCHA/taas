@@ -1,0 +1,9 @@
+# Config file for testing
+
+sources:
+    bad_key:
+        key: NopeNopeNope
+        gid: 0
+        mapping:
+            foo: bar
+
