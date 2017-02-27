@@ -1,0 +1,86 @@
+[
+    {
+        "id": "2376", 
+        "label": "Administrative Officer"
+    }, 
+    {
+        "id": "2377", 
+        "label": "Head of Agency or Office"
+    }, 
+    {
+        "id": "2379", 
+        "label": "Civil-Military Officer"
+    }, 
+    {
+        "id": "2380", 
+        "label": "Cluster Co-Lead"
+    }, 
+    {
+        "id": "2381", 
+        "label": "Cluster Coordinator"
+    }, 
+    {
+        "id": "2382", 
+        "label": "Public Information Officer"
+    }, 
+    {
+        "id": "2383", 
+        "label": "GenCap Officer"
+    }, 
+    {
+        "id": "2385", 
+        "label": "Government Official"
+    }, 
+    {
+        "id": "2386", 
+        "label": "HCT Member"
+    }, 
+    {
+        "id": "2387", 
+        "label": "Information Management Officer"
+    }, 
+    {
+        "id": "2389", 
+        "label": "ProCap Officer"
+    }, 
+    {
+        "id": "56025", 
+        "label": "Donor"
+    }, 
+    {
+        "id": "56026", 
+        "label": "Humanitarian Coordinator"
+    }, 
+    {
+        "id": "56027", 
+        "label": "Military Officer"
+    }, 
+    {
+        "id": "56028", 
+        "label": "United Nations Country Team Member"
+    }, 
+    {
+        "id": "56029", 
+        "label": "Resident Coordinator"
+    }, 
+    {
+        "id": "56030", 
+        "label": "Head of Sub-Office"
+    }, 
+    {
+        "id": "56055", 
+        "label": "Executive Assistant"
+    }, 
+    {
+        "id": "61563", 
+        "label": "UNDAC Member"
+    }, 
+    {
+        "id": "61978", 
+        "label": "Cluster Coordination Team Member"
+    }, 
+    {
+        "id": "", 
+        "label": "Environmental Expert"
+    }
+]

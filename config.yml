@@ -12,5 +12,5 @@ sources:
         # Mapping of column names -> API fields
         # Columns that aren't mentioned get ignored.
         mapping:
-            ID: id
-            Preferred Term: label
+            id: ID
+            label: Preferred Term
