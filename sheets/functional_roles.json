@@ -1,86 +1,107 @@
 [
     {
         "id": "2376", 
-        "label": "Administrative Officer"
+        "label": "Administrative Officer", 
+        "scope": "Responsible for Office Administration and administrative support"
     }, 
     {
         "id": "2377", 
-        "label": "Head of Agency or Office"
+        "label": "Head of Agency or Office", 
+        "scope": "Head of a UN, NGO or local agency or office.  May include managing staff working in the country office; including assisting in the preparation of office work and cost plans and financial, human resources and administrative management."
     }, 
     {
         "id": "2379", 
-        "label": "Civil-Military Officer"
+        "label": "Civil-Military Officer", 
+        "scope": "Facilitates dialogue\nand interaction between civilian\nand military actors to better deliver humanitarian relief during a natural disaster or complex emergency."
     }, 
     {
         "id": "2380", 
-        "label": "Cluster Co-Lead"
+        "label": "Cluster Co-Lead", 
+        "scope": "Works in collaboration with the Cluster Coordinator in leading cluster-based activities during humanitarian operations.  Frequently co-chairs cluster coordination meetings and other activities.   "
     }, 
     {
         "id": "2381", 
-        "label": "Cluster Coordinator"
+        "label": "Cluster Coordinator", 
+        "scope": "Responsible for leading cluster-based activities during humanitarian operations.  Provides leadership and works on behalf of the cluster as a whole, facilitating all cluster activities and developing and maintaining a strategic vision and operational response plan."
     }, 
     {
         "id": "2382", 
-        "label": "Public Information Officer"
+        "label": "Public Information Officer", 
+        "scope": "Delivers core messages related to a humanitarian response using various communication tools, including social media tools, radio, television, print, the internet, videoconferencing and other new information technologies."
     }, 
     {
         "id": "2383", 
-        "label": "GenCap Officer"
+        "label": "GenCap Officer", 
+        "scope": "Inter-agency staff trained to advise on, facilitate and strengthen capacity and leadership of humanitarians to undertake and promote gender-sensitive programming to ensure the distinct needs of women, girls, boys and men of all ages and backgrounds, are taken into account in humanitarian action at global, regional, and country levels.  Frequently deploy to be hosted by the Humanitarian Coordinator's Office or a UN agency."
     }, 
     {
         "id": "2385", 
-        "label": "Government Official"
+        "label": "Government Official", 
+        "scope": "An official who is involved in public administration or government, through either election, appointment, selection, or employment. "
     }, 
     {
         "id": "2386", 
-        "label": "HCT Member"
+        "label": "HCT Member", 
+        "scope": "Composed of members of organisations that are undertaking humanitarian action in-country and\nthat have committed to participate in coordination arrangements. These may include UN agencies, the International Organization for Migration, non-governmental organizations, and subject to\ntheir individual mandates, components of the International Red Cross and Red Crescent\nMovement."
     }, 
     {
         "id": "2387", 
-        "label": "Information Management Officer"
+        "label": "Information Management Officer", 
+        "scope": "Manage information and data around the humanitarian programme cycle, including supporting common information processes such as preparedness, needs assessment, strategic planning, resource mobilization, implementation and monitoring."
     }, 
     {
         "id": "2389", 
-        "label": "ProCap Officer"
+        "label": "ProCap Officer", 
+        "scope": "Inter-agency staff  trained to advise on and support the strategic and operational humanitarian protection response for Displaced Persons and other vulnerable populations. "
     }, 
     {
         "id": "56025", 
-        "label": "Donor"
+        "label": "Donor", 
+        "scope": "Organization's representative responsible for donating money, goods or other in-kind contributions. "
     }, 
     {
         "id": "56026", 
-        "label": "Humanitarian Coordinator"
+        "label": "Humanitarian Coordinator", 
+        "scope": "Senior-most United Nations official in a country experiencing a humanitarian emergency. The Humanitarian Coordinator is appointed by the United Nations Emergency Relief Coordinator when a new emergency occurs or an existing humanitarian situation worsens in degree and/or complexity."
     }, 
     {
         "id": "56027", 
-        "label": "Military Officer"
+        "label": "Military Officer", 
+        "scope": "Member of an armed force or uniformed service who holds a position of authority."
     }, 
     {
         "id": "56028", 
-        "label": "United Nations Country Team Member"
+        "label": "United Nations Country Team Member", 
+        "scope": "Representatives of the UN funds and programmes, specialized agencies and other UN entities accredited to a given country designated to participate in the United Nations Country Team.  "
     }, 
     {
         "id": "56029", 
-        "label": "Resident Coordinator"
+        "label": "Resident Coordinator", 
+        "scope": "Designated representative of the UN Secretary-General assigned to lead the United Nations Country Team."
     }, 
     {
         "id": "56030", 
-        "label": "Head of Sub-Office"
+        "label": "Head of Sub-Office", 
+        "scope": "Manages all staff working in the field sub-office; including assisting in the preparation of office work and cost plans and financial, human resources and administrative management. "
     }, 
     {
         "id": "56055", 
-        "label": "Executive Assistant"
+        "label": "Executive Assistant", 
+        "scope": "Assists senior management (potentially including the management of human and financial resources, ethics, investigation and audit, and management and analysis)."
     }, 
     {
         "id": "61563", 
-        "label": "UNDAC Member"
+        "label": "UNDAC Member", 
+        "scope": "Individuals specifially trained as members of the United Nations Disaster Assessment and Coordination team in order to  deploy to disaster-affected locations upon the request of the United Nations Resident or Humanitarian Coordinator and/or the affected Government."
     }, 
     {
         "id": "61978", 
-        "label": "Cluster Coordination Team Member"
+        "label": "Cluster Coordination Team Member", 
+        "scope": "Cluster member who seeks to strategize and coordinate humanitarian activities between clusters. "
     }, 
     {
         "id": "", 
-        "label": "Environmental Expert"
+        "label": "Environmental Expert", 
+        "scope": "Expert whose role is to provide information and guidance on environmental topics, including natural resource use, waste management, chemical pollution and energy provision."
     }
 ]
