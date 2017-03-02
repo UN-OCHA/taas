@@ -1,9 +1,9 @@
 all:
 	virtualenv venv
-	venv/bin/pip install --upgrade .
-	venv/bin/pip install -r requirements.txt
+	venv/bin/pip install -q --upgrade .
+	venv/bin/pip install -q -r requirements.txt
 
-test:
+test:	all
 	venv/bin/pytest tests
 
 clean:
