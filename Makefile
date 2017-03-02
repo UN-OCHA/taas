@@ -9,5 +9,8 @@ test:	all
 fetch:	all
 	venv/bin/python bin/fetch.py
 
+update:	all
+	venv/bin/python bin/update.py
+
 clean:
 	rm -rf venv *.pyc .cache tests/__pycache__
