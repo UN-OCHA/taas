@@ -6,5 +6,8 @@ all:
 test:	all
 	venv/bin/pytest tests
 
+fetch:	all
+	venv/bin/python bin/fetch.py
+
 clean:
 	rm -rf venv *.pyc .cache tests/__pycache__
