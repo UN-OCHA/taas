@@ -23,6 +23,9 @@ update:	venv FORCE
 freeze:
 	venv/bin/pip freeze | grep -v taas.git > requirements.txt
 
+docker:
+	docker build -f Dockerfile .
+
 clean:
 	rm -rf venv *.pyc .cache tests/__pycache__ .coverage taas.egg-info htmlcov
 
