@@ -5,6 +5,8 @@ import sys
 import urllib
 import yaml
 
+"""Supporting functions for UN-OCHA's Taxonomy As A Service (TAAS) project."""
+
 def debug(string):
     """Display a debug message."""
     # Simple now, but a function means we can turn them off, or redirect them later.
