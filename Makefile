@@ -1,5 +1,6 @@
 all:
 	virtualenv venv
+	venv/bin/pip install --upgrade pip
 	venv/bin/pip install -q --upgrade .
 	venv/bin/pip install -q -r requirements.txt
 
@@ -8,6 +9,9 @@ test:	all
 
 cover:	all
 	venv/bin/pytest --cov=. tests
+
+coveralls:
+	venv/bin/coveralls
 
 fetch:	all
 	venv/bin/python bin/fetch.py
