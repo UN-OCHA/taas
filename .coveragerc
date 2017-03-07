@@ -1,3 +1,6 @@
 [run]
 branch=True
-omit=venv/*
+omit=
+    venv/*
+    setup.py
+    tests/*
