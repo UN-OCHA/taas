@@ -1,5 +1,6 @@
 all:
 	virtualenv venv
+	venv/bin/pip install --upgrade pip
 	venv/bin/pip install -q --upgrade .
 	venv/bin/pip install -q -r requirements.txt
 
