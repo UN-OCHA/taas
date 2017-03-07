@@ -9,6 +9,9 @@ test:	all
 cover:	all
 	venv/bin/pytest --cov=. tests
 
+coveralls:
+	venv/bin/coveralls
+
 fetch:	all
 	venv/bin/python bin/fetch.py
 
