@@ -6,6 +6,9 @@ all:
 test:	all
 	venv/bin/pytest tests
 
+cover:	all
+	venv/bin/pytest --cov=. tests
+
 fetch:	all
 	venv/bin/python bin/fetch.py
 
