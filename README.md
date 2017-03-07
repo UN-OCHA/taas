@@ -1,5 +1,8 @@
 # UN-OCHA Taxonomy As A Service
 
+[![Build Status](https://travis-ci.org/UN-OCHA/taas.svg?branch=master)](https://travis-ci.org/UN-OCHA/taas)
+[![Coverage Status](https://coveralls.io/repos/github/UN-OCHA/taas/badge.svg?branch=coveralls)](https://coveralls.io/github/UN-OCHA/taas)
+
 This code that powers the UN Office for the Coordination of Humanitarian Affairs (UN-OCHA)
 Taxnonomy as a Service APIs.
 
