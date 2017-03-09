@@ -20,7 +20,15 @@ def project_root():
     )
 
 def sheets_root():
-    """Returns directory containing our sheets files."""
+    """
+        Returns directory containing our sheets files. This is defined by the
+        TAAS_DATA environment variable if set, or a default relative to the
+        `project_root` if not.
+    """
+
+    if "TAAS_DATA" in os.environ:
+        return os.environ["TAAS_DATA"]
+
     return os.path.join( project_root(), "sheets")
 
 def read_config(file = None):
