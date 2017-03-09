@@ -20,4 +20,4 @@ update:	all
 	venv/bin/python bin/update.py
 
 clean:
-	rm -rf venv *.pyc .cache tests/__pycache__
+	rm -rf venv *.pyc .cache tests/__pycache__ .coverage taas.egg-info
