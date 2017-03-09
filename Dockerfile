@@ -7,13 +7,9 @@ MAINTAINER Paul Fenwick "paul@humanitarianresponse.info"
 # openssh is the transport needed to make PRs to github
 RUN apk add --update --no-cache git hub openssh
 
-# Copy over our app
-COPY . /app
-WORKDIR /app
-
-# Make sure we're up to date
-RUN git pull
-
-# Build everything ready to go
-RUN make
-
+# What we expect now:
+# - Jenkins checks out taas and taas-data and mounts them
+# - Jenkins passes us env variables with the mountpoints
+# - Jenkins passes us an env variable with an API key (for hub)
+# - Jenkins mounts a .ssh directory (so we can push)
+# - We run `make update` to run the update
