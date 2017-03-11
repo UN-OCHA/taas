@@ -5,7 +5,12 @@ import taas
 test_root   = os.path.dirname(__file__)
 test_config = os.path.join( test_root, "config.yml" )
 
-# TODO: Write a lot more tests!
+def clear_env():
+    # Clean our environment of variables that may screw our tests
+
+    try:
+        del os.environ["TAAS_DATA"]
+    except KeyError: pass
 
 def test_read_config():
     config = taas.read_config(test_config)
@@ -19,17 +24,27 @@ def test_taas_data_env():
     """
 
     # Clear env first, just in case
-    try:
-        del os.environ["TAAS_DATA"]
-    except KeyError: pass
+    clear_env()
 
     fake_env = "/tmp/somefakedir"
 
-    sheets = taas.sheets_root()
-    assert sheets is not None
+    data = taas.data_root()
+    assert data is not None
 
     os.environ["TAAS_DATA"] = fake_env
-    sheets_env = taas.sheets_root()
+    data_env = taas.data_root()
 
-    assert sheets_env != sheets
-    assert sheets_env == fake_env
+    assert data_env != data
+    assert data_env == fake_env
+
+def test_data_roots():
+    """
+        Tests our data roots in various ways.
+    """
+
+    data_root = taas.data_root()
+
+    assert taas.data_root() is not None
+
+    assert taas.sheets_root() == os.path.join(data_root,"sheets")
+    assert taas.json_root()   == os.path.join(data_root,"json")

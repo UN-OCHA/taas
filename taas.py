@@ -19,17 +19,49 @@ def project_root():
         ".."
     )
 
-def sheets_root():
+def data_root(directory = None):
     """
-        Returns directory containing our sheets files. This is defined by the
-        TAAS_DATA environment variable if set, or a default relative to the
-        `project_root` if not.
+        Returns the directory where our data gets stored. Defined by the `TAAS_DATA`
+        environment variable if set, otherwise a default that may not be applicable
+        for all systems is returned.
+
+        If an argument is passed, we return that directory with the data_root prepended.
     """
+
+    data_root = None
 
     if "TAAS_DATA" in os.environ:
-        return os.environ["TAAS_DATA"]
+        data_root = os.environ["TAAS_DATA"]
+    else:
+        # This assumes we have a taas/bin directory (that we're running from),
+        # and a taas-data directory (where we put stuff). Ideally we want
+        # TAAS_DATA to be set please.
 
-    return os.path.join( project_root(), "sheets")
+        data_root = os.path.join(
+            os.path.dirname(sys.argv[0]),
+            "..",
+            "..",
+            "taas-data"
+        )
+
+    if directory is None:
+        return data_root
+    else:
+        return os.path.join(data_root,directory)
+
+def sheets_root():
+    """
+        Returns directory containing our sheets files.
+    """
+
+    return data_root("sheets")
+
+def json_root():
+    """
+        Returns directory containing our JSON files.
+    """
+
+    return data_root("json")
 
 def read_config(file = None):
     """
@@ -113,11 +145,11 @@ def normalise_sheet(raw, mapping):
 def save_json(name, data, directory = None):
     """
         Saves `data` as JSON into "directory/name.json".
-        If no directory is specified, sheet_roots() will be used.
+        If no directory is specified, json_root() will be used.
     """
 
     if directory is None:
-        directory = sheets_root()
+        directory = json_root()
 
     path = os.path.join(directory, "{}.json".format(name))
 
