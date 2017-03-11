@@ -19,6 +19,24 @@ def project_root():
         ".."
     )
 
+def _data_root():
+    # Internal helper function that returns our undecorated data root.
+    # Use `data_root()` for the public interface.
+
+    if "TAAS_DATA" in os.environ:
+        return os.environ["TAAS_DATA"]
+
+    # This assumes we have a taas/bin directory (that we're running from),
+    # and a taas-data directory (where we put stuff). Ideally we want
+    # TAAS_DATA to be set please.
+
+    return os.path.join(
+        os.path.dirname(sys.argv[0]),
+        "..",
+        "..",
+        "taas-data"
+    )
+
 def data_root(directory = None):
     """
         Returns the directory where our data gets stored. Defined by the `TAAS_DATA`
@@ -28,26 +46,10 @@ def data_root(directory = None):
         If an argument is passed, we return that directory with the data_root prepended.
     """
 
-    data_root = None
-
-    if "TAAS_DATA" in os.environ:
-        data_root = os.environ["TAAS_DATA"]
-    else:
-        # This assumes we have a taas/bin directory (that we're running from),
-        # and a taas-data directory (where we put stuff). Ideally we want
-        # TAAS_DATA to be set please.
-
-        data_root = os.path.join(
-            os.path.dirname(sys.argv[0]),
-            "..",
-            "..",
-            "taas-data"
-        )
-
     if directory is None:
-        return data_root
+        return _data_root()
     else:
-        return os.path.join(data_root,directory)
+        return os.path.join(_data_root(),directory)
 
 def sheets_root():
     """
