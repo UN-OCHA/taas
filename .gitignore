@@ -4,3 +4,4 @@ taas.egg-info
 *.pyc
 .cache
 .coverage
+htmlcov
