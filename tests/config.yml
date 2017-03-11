@@ -2,8 +2,9 @@
 
 sources:
     bad_key:
-        key: NopeNopeNope
-        gid: 0
-        mapping:
-            foo: bar
+        v1:
+            key: NopeNopeNope
+            gid: 0
+            mapping:
+                foo: bar
 

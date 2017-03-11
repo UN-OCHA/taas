@@ -9,10 +9,16 @@ import json
 
 def main():
     config = taas.read_config()
-    for name in config['sources']:
-        sheet = config['sources'][name]
+    for service_name in config['sources']:
+        service = config['sources'][service_name]
 
-        taas.google_sheet_to_json(name, sheet['key'], sheet['gid'], sheet['mapping'])
+        for version in service:
+
+            options = service[version]
+            
+            taas.google_sheet_to_json(
+                service_name, version, options['key'], options['gid'], options['mapping']
+            )
 
 if __name__ == "__main__":
     main()

@@ -144,15 +144,25 @@ def normalise_sheet(raw, mapping):
 
     return cooked
 
-def save_json(name, data, directory = None):
+def save_json(name, version, data, directory = None):
     """
-        Saves `data` as JSON into "directory/name.json".
+        Saves `data` as JSON into "directory/version/name.json".
         If no directory is specified, json_root() will be used.
+
+        Creates the directory if it does not already exist.
     """
 
     if directory is None:
         directory = json_root()
 
+    # Add our version prefix
+    directory = os.path.join(directory,version);
+
+    # Make directory
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
+    
+    # Final file location
     path = os.path.join(directory, "{}.json".format(name))
 
     debug("Writing to {}\n".format(path))
@@ -160,7 +170,7 @@ def save_json(name, data, directory = None):
     with open(path,"w") as jsonfile:
         json.dump(data, jsonfile, indent=4, sort_keys=True)
 
-def google_sheet_to_json(name, key, gid, mapping, directory = None):
+def google_sheet_to_json(name, version, key, gid, mapping, directory = None):
     """
         Does the entire process of downloading a google sheet, mapping
         the fields, and saving it as JSON.
@@ -174,5 +184,5 @@ def google_sheet_to_json(name, key, gid, mapping, directory = None):
     save_google_sheet(name,key,gid)
     raw = read_sheet_csv(name)
     cooked = normalise_sheet(raw, mapping)
-    save_json(name, cooked)
+    save_json(name, version, cooked)
 
