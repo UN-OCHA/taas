@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/UN-OCHA/taas.svg?branch=master)](https://travis-ci.org/UN-OCHA/taas)
 [![Coverage Status](https://coveralls.io/repos/github/UN-OCHA/taas/badge.svg?branch=master)](https://coveralls.io/github/UN-OCHA/taas)
+[![Code Climate](https://lima.codeclimate.com/github/UN-OCHA/taas/badges/gpa.svg)](https://lima.codeclimate.com/github/UN-OCHA/taas)
+[![Issue Count](https://lima.codeclimate.com/github/UN-OCHA/taas/badges/issue_count.svg)](https://lima.codeclimate.com/github/UN-OCHA/taas)
 
 This code that powers the UN Office for the Coordination of Humanitarian Affairs (UN-OCHA)
 Taxnonomy as a Service APIs.
