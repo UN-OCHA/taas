@@ -8,7 +8,7 @@ venv: requirements.txt
 test: venv FORCE
 	venv/bin/pep8 . --exclude venv --max-line-length 120
 	venv/bin/yamllint .
-	venv/bin/nosetests --with-coverage
+	venv/bin/nosetests --with-coverage --cover-package=.
 
 coveralls: test FORCE
 	venv/bin/coveralls
