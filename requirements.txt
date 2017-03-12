@@ -1,6 +1,7 @@
 appdirs==1.4.2
 cffi==1.9.1
 click==6.7
+codeclimate-test-reporter==0.2.1
 coverage==4.0.3
 cryptography==1.7.2
 enum34==1.1.6
@@ -10,7 +11,9 @@ ipaddress==1.0.18
 itsdangerous==0.24
 Jinja2==2.9.5
 MarkupSafe==0.23
+nose==1.3.7
 packaging==16.8
+pep8==1.7.0
 py==1.4.32
 pyasn1==0.2.3
 pycparser==2.17
@@ -23,3 +26,4 @@ PyYAML==3.12
 requests==2.13.0
 six==1.10.0
 Werkzeug==0.11.15
+yamllint==1.6.1

@@ -33,5 +33,5 @@ Then run scripts from the `bin` directory:
 
 ## Contributing
 
-Please run `pip freeze > requirements.txt` when making code changes with new libraries, so we get any updated
+Please run `make freeze` when making code changes with new libraries, so we get any updated
 library requirements along with your code.

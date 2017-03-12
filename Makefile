@@ -3,7 +3,6 @@ venv: requirements.txt
 	venv/bin/pip install -q --upgrade pip
 	venv/bin/pip install -q --editable .
 	venv/bin/pip install -q -r requirements.txt
-	venv/bin/pip install -q yamllint pep8 nose
 
 test: venv FORCE
 	venv/bin/pep8 . --exclude venv --max-line-length 120
@@ -20,6 +19,9 @@ fetch:	venv FORCE
 
 update:	venv FORCE
 	venv/bin/python bin/update.py
+
+freeze:
+	venv/bin/pip freeze | grep -v taas.git > requirements.txt
 
 clean:
 	rm -rf venv *.pyc .cache tests/__pycache__ .coverage taas.egg-info htmlcov
