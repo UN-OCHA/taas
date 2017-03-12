@@ -7,6 +7,7 @@
 import taas
 import json
 
+
 def main():
     config = taas.read_config()
     for service_name in config['sources']:
@@ -15,7 +16,7 @@ def main():
         for version in service:
 
             options = service[version]
-            
+
             taas.google_sheet_to_json(
                 service_name, version, options['key'], options['gid'], options['mapping']
             )
