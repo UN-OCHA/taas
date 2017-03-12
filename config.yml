@@ -1,5 +1,5 @@
+---
 sources:
-
     # This maps directly to the API URL
     functional_roles:
         v1:

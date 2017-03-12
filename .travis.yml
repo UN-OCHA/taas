@@ -9,6 +9,7 @@ install:
   - pip install --user yamllint
 
 script:
+  - yamllint .
   - nosetests
 
 after_success:
