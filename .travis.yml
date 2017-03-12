@@ -5,13 +5,10 @@ python:
   - 2.7
 
 install:
-  - pip install -r requirements.txt
-  - pip install yamllint pep8
+  - make
 
 script:
-  - pep8 . --max-line-length 120
-  - yamllint .
-  - nosetests
+  - make test
 
 after_success:
   - make coveralls
