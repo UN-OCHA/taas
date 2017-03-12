@@ -10,8 +10,10 @@ test: venv FORCE
 	venv/bin/yamllint .
 	venv/bin/nosetests --with-coverage --cover-package=.
 
-coveralls: test FORCE
+# Reports tests to our CI providers and friends
+test-report: test FORCE
 	venv/bin/coveralls
+	venv/bin/codeclimate-test-reporter
 
 fetch:	venv FORCE
 	venv/bin/python bin/fetch.py
