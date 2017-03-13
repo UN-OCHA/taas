@@ -6,6 +6,7 @@ This script fetches new data and rolls them into a git commit and pull-request.
 
 import datetime
 import subprocess
+import os
 import sys
 import taas
 
@@ -21,10 +22,14 @@ def main():
 
     # Make sure we have a label passed in to tag this commit with.
     # In the future, this is probably going to be the target to update.
-    try:
-        label = sys.argv[1]
-    except IndexError:
-        sys.exit("Usage {} label".format(sys.argv[0]))
+
+    if "TAAS_PR_LABEL" in os.environ:
+        label = os.environ["TAAS_PR_LABEL"]
+    else:
+        try:
+            label = sys.argv[1]
+        except IndexError:
+            sys.exit("Usage {} label".format(sys.argv[0]))
 
     root = taas.project_root()
     sheets_dir = taas.sheets_root()
