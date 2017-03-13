@@ -6,6 +6,8 @@ MAINTAINER Paul Fenwick "paul@humanitarianresponse.info"
 # Hub actually lets us make PRs to github
 # openssh is the transport needed to make PRs to github
 RUN apk add --update --no-cache git hub openssh
+RUN apk add --update --no-cache make
+RUN apk add --update --no-cache py-virtualenv
 
 # What we expect now:
 # - Jenkins checks out taas and taas-data and mounts them
