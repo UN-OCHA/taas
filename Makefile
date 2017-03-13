@@ -1,7 +1,7 @@
 venv: requirements.txt
 	virtualenv venv
 	venv/bin/pip install -q --upgrade pip
-	venv/bin/pip install -q --editable .
+	venv/bin/pip install -q --upgrade --editable .
 	venv/bin/pip install -q -r requirements.txt
 
 test: venv FORCE

@@ -5,3 +5,4 @@ taas.egg-info
 .cache
 .coverage
 htmlcov
+build

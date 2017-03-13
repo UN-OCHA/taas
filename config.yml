@@ -1,4 +1,8 @@
 ---
+# TODO: We should have a config.d or similar setup; this means adding
+#       additional services doesn't result in them fighting for control of the
+#       same config file.
+
 sources:
     # This maps directly to the API URL
     functional_roles:

@@ -12,8 +12,25 @@ import taas
 
 
 def run(cmdlist):
+    """
+        Runs our command and checks for success. Mostly here so if we want to
+        change how we run things in the future, we can do so.
+    """
+
     print "$ {}\n".format(" ".join(cmdlist))
     subprocess.check_call(cmdlist)
+
+
+def something_to_commit():
+    """Returns true if we've got files to commit."""
+
+    # Procelain returns nothing if there's nothing to commit
+    ret = subprocess.check_output(["git", "status", "--porcelain"])
+
+    if (len(ret) > 0):
+        return True
+
+    return False
 
 
 def main():
@@ -31,8 +48,17 @@ def main():
         except IndexError:
             sys.exit("Usage {} label".format(sys.argv[0]))
 
-    root = taas.project_root()
-    sheets_dir = taas.sheets_root()
+    # In the future we might take an argument to only process one,
+    # but we're doing them all for now.
+    taas.process_all_sources()
+
+    # Make sure we're in the right plac to do all the git things.
+    os.chdir(taas.data_root())
+
+    # If there's nothing to do, then do nothing.
+    if (not something_to_commit()):
+        print("Nothing to commit.")
+        return
 
     branch_name = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
@@ -40,14 +66,7 @@ def main():
 
     run(["git", "checkout", "-b", branch_name])
 
-    # TODO: This is awful, because we should just call the function directly,
-    # Here I am writing python as if it were shell. :/
-    run([
-        root + "/venv/bin/python",
-        root + "/bin/fetch.py"
-    ])
-
-    run(["git", "add", sheets_dir])
+    run(["git", "add", "-A"])
 
     run(["git", "status"])
 

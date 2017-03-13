@@ -17,8 +17,7 @@ def debug(string):
 def project_root():
     """Returns the root to this project. Used in locating config files and the like."""
     return os.path.join(
-        os.path.dirname(sys.argv[0]),
-        ".."
+        os.path.dirname(__file__)
     )
 
 
@@ -29,13 +28,12 @@ def _data_root():
     if "TAAS_DATA" in os.environ:
         return os.environ["TAAS_DATA"]
 
-    # This assumes we have a taas/bin directory (that we're running from),
+    # This assumes we have a taas directory (that we're running from),
     # and a taas-data directory (where we put stuff). Ideally we want
     # TAAS_DATA to be set please.
 
     return os.path.join(
-        os.path.dirname(sys.argv[0]),
-        "..",
+        project_root(),
         "..",
         "taas-data"
     )
@@ -198,3 +196,39 @@ def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
     raw = read_sheet_csv(name)
     cooked = normalise_sheet(raw, mapping)
     save_json(name, version, cooked)
+
+
+def process_source(source_name, source):
+    """
+        Processes a source, generating JSON and potentially other supporting
+        files. Right now this is only able to flip sheets to JSON, but we may
+        support other services in the future.
+
+        Expects a dictionary of vesions, with service descriptions underneath.
+    """
+
+    # TODO: We should have a service class definition, rather than trusting our
+    #       config file is in the right format.
+
+    for version in source:
+
+        options = source[version]
+
+        google_sheet_to_json(
+            source_name, version, options['key'], options['gid'], options['mapping']
+        )
+
+
+def process_all_sources(config=None):
+    """
+        Processes all sources in a given config, generating JSON output. Uses
+        the default config if none supplied.
+    """
+
+    if config is None:
+        config = read_config()
+
+    sources = config['sources']
+
+    for source_name in sources:
+        process_source(source_name, sources[source_name])
