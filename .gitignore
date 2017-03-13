@@ -6,3 +6,4 @@ taas.egg-info
 .coverage
 htmlcov
 build
+dist

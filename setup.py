@@ -3,6 +3,7 @@ from setuptools import setup
 
 setup(
     name='taas',
+    package_dir={"": "."},
     py_modules=['taas'],
     entry_points={
         'console_scripts': [
@@ -15,5 +16,9 @@ setup(
     # - I'd like to keep `config.yml` as a top-level file for now.
     # - Apparently distutils can do this, but it doesn't understand `entry_points`.
     # - ;_;
-    data_files=[('', 'config.yml')]
+    package_data={'.': ['config.yml']},
+
+    # I've got this here because everyong says I need it, and it still doesn't
+    # help. ;(
+    include_package_data=True
 )
