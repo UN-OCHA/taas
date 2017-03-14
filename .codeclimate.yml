@@ -1,0 +1,26 @@
+---
+engines:
+  fixme:
+    # Fixme looks for things to fix (TODO/FIXME/HACK/XXX/BUG)
+    enabled: true
+  radon:
+    # Radon is a complexity checker for python
+    enabled: true
+  duplication:
+    # Duplication finds repeated chunks of code
+    enabled: true
+    config:
+      languages:
+        - python
+  pep8:
+    # Pep8 is a python style checker
+    enabled: true
+  shellcheck:
+    # Shellcheck is a shell code linter
+    enabled: true
+ratings:
+  paths:
+    - "**.py"
+    - "**.sh"
+exclude_paths:
+  - tests/
