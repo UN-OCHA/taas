@@ -14,22 +14,20 @@ The easy way:
 
     $ make
 
-The harder way:
-
-    $ virtualenv venv
-    $ . venv/bin/activate
-    $ pip install --upgrade .
-    $ pip install -r requirements.txt
-
 # Running the code:
 
 Activate the virtual environment:
 
     $ . env/bin/activate
 
-Then run scripts from the `bin` directory:
+Fetch updates with `fetch`. Make sure you have the `UN-OCHA/taas-data` directory checked
+out the same level as `taas`, or set your `TAAS_DATA` environment variable first.
 
-    $ bin/fetch.py
+    $ fetch
+
+Create a pull-request using `update.py`:
+
+    $ bin/update.py
 
 ## Contributing
 
