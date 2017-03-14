@@ -134,7 +134,7 @@ def save_google_sheet(name, key, gid, file_format="csv", directory=None):
     urllib.urlretrieve(url, filename)
 
 
-def normalise_sheet(raw, mapping):
+def normalise_sheet(raw, base_uri, mapping):
     """
         Converts data from the form found in .csv files to that which will be served by
         our final JSON system.
@@ -148,7 +148,14 @@ def normalise_sheet(raw, mapping):
     for row in raw:
         item = {}
         for field in mapping:
-            item[field] = row[mapping[field]]
+            json_field = field
+            if mapping[field] in row:
+                if field == "@id":
+                    item[json_field] = base_uri + row[mapping[field]]
+                else:
+                    item[json_field] = row[mapping[field]]
+            else:
+                item[json_field] = mapping[field]
         cooked.append(item)
 
     return cooked
@@ -181,7 +188,7 @@ def save_json(name, version, data, directory=None):
         json.dump(data, jsonfile, indent=4, sort_keys=True)
 
 
-def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
+def google_sheet_to_json(name, version, key, gid, base_uri, mapping, directory=None):
     """
         Does the entire process of downloading a google sheet, mapping
         the fields, and saving it as JSON.
@@ -194,7 +201,7 @@ def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
 
     save_google_sheet(name, key, gid)
     raw = read_sheet_csv(name)
-    cooked = normalise_sheet(raw, mapping)
+    cooked = normalise_sheet(raw, base_uri, mapping)
     save_json(name, version, cooked)
 
 
@@ -215,7 +222,7 @@ def process_source(source_name, source):
         options = source[version]
 
         google_sheet_to_json(
-            source_name, version, options['key'], options['gid'], options['mapping']
+            source_name, version, options['key'], options['gid'], options['base_uri'], options['mapping']
         )
 
 

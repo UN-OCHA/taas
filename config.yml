@@ -13,11 +13,15 @@ sources:
             # Sheet number. Extract from the spreadsheet URL as well.
             gid: 0
 
+            # Base URI for the generation of IDs
+            base_uri: "http://unocha.org/FunctionalRole/"
+
             # Mapping of column names -> API fields
             # Columns that aren't mentioned get ignored.
             mapping:
-                id: ID
+                "@context": "https://raw.githubusercontent.com/UN-OCHA/taas-data/master/json/v1/functional_roles.jsonld"
+                "@id": ID
                 label: Preferred Term
-                xx_scope: Scope
-                xx_label_fr: French Term
-                xx_label_es: Spanish Term
+                label_fr: French Term
+                label_es: Spanish Term
+                scope: Scope
