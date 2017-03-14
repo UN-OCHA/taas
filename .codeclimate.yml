@@ -1,25 +1,26 @@
 ---
 engines:
+  fixme:
+    # Fixme looks for things to fix (TODO/FIXME/HACK/XXX/BUG)
+    enabled: true
+  radon:
+    # Radon is a complexity checker for python
+    enabled: true
   duplication:
+    # Duplication finds repeated chunks of code
     enabled: true
     config:
       languages:
-        - ruby
-        - javascript
         - python
-        - php
-  fixme:
+  pep8:
+    # Pep8 is a python style checker
     enabled: true
-  radon:
+  shellcheck:
+    # Shellcheck is a shell code linter
     enabled: true
 ratings:
   paths:
-    - "**.inc"
-    - "**.js"
-    - "**.jsx"
-    - "**.module"
-    - "**.php"
     - "**.py"
-    - "**.rb"
+    - "**.sh"
 exclude_paths:
   - tests/
