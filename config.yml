@@ -14,3 +14,6 @@ sources:
             mapping:
                 id: ID
                 label: Preferred Term
+                xx_scope: Scope
+                xx_label_fr: French Term
+                xx_label_es: Spanish Term
