@@ -14,7 +14,7 @@ sources:
             gid: 0
 
             # Base URI for the generation of IDs
-            base_uri: "http://unocha.org/FunctionalRole/"
+            base_uri: "http://vocabulary.unocha.org/FunctionalRole/"
 
             # Mapping of column names -> API fields
             # Columns that aren't mentioned get ignored.
