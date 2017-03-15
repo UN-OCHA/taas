@@ -61,4 +61,4 @@ $ docker run                                                \
 Things to note:
 
 - You must have run [hub](https://github.com/github/hub) at least once to generate your `~/.config/hub` token.
-- I'm a docker n00b, so there's almost a better way to do all of the above. Pathces welcome!
+- I'm a docker n00b, so there's almost a better way to do all of the above. Patches welcome!
