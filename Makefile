@@ -5,7 +5,7 @@ venv: requirements.txt
 	venv/bin/pip install -q -r requirements.txt
 
 test: venv FORCE
-	venv/bin/pep8 . --exclude venv --max-line-length 120
+	venv/bin/pep8 .
 	venv/bin/yamllint .
 	venv/bin/nosetests --with-coverage --cover-package=.
 
