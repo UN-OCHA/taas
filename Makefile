@@ -1,8 +1,12 @@
+# We use --system-site-packages so we can potentially make Docker's life
+# easier by installing deps from apk.
+
 venv: requirements.txt
-	virtualenv venv
-	venv/bin/pip install -q --upgrade pip
-	venv/bin/pip install -q --upgrade --editable .
-	venv/bin/pip install -q -r requirements.txt
+	virtualenv --system-site-packages venv
+	venv/bin/pip install --upgrade pip
+	venv/bin/pip install --upgrade appdirs
+	venv/bin/pip install --upgrade --editable .
+	venv/bin/pip install -r requirements.txt
 
 test: venv FORCE
 	venv/bin/pep8 .
@@ -22,6 +26,9 @@ update:	venv FORCE
 
 freeze:
 	venv/bin/pip freeze | grep -v taas.git > requirements.txt
+
+docker:
+	docker build -f Dockerfile .
 
 clean:
 	rm -rf venv *.pyc .cache tests/__pycache__ .coverage taas.egg-info htmlcov

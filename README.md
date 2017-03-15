@@ -33,3 +33,32 @@ Create a pull-request using `update.py`:
 
 Please run `make freeze` when making code changes with new libraries, so we get any updated
 library requirements along with your code.
+
+## Running from Docker
+
+If you really want to...
+
+```
+$ git checkout UN-OCHA/taas
+$ git checkout UN-OCHA/taas-data
+$ cd taas
+$ docker build .
+$ docker run                                                \
+    --rm --name tmp-tass                                    \
+    -v ~/.config/hub:/root/.config/hub                      \
+    -v ~/.ssh:/root/.ssh                             \
+    -v ~/taas:/tmp/taas                                     \
+    -v ~/taas-data:/tmp/taas-data                           \
+    -w /tmp/taas                                            \
+    -e 'TAAS_PR_LABEL=dockertest'                           \
+    -e 'GIT_COMMITTER_NAME=BeepBoop'                        \
+    -e 'GIT_COMMITTER_EMAIL=paul@humanitarianresponse.info' \
+    -e 'GIT_AUTHOR_NAME=BeepBoop'                           \
+    -e 'GIT_AUTHOR_EMAIL=paul@humanitarianresponse.info'    \
+    YourDockerBuildHere make update
+```
+
+Things to note:
+
+- You must have run [hub](https://github.com/github/hub) at least once to generate your `~/.config/hub` token.
+- I'm a docker n00b, so there's almost a better way to do all of the above. Pathces welcome!

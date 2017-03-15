@@ -1,4 +1,4 @@
-appdirs==1.4.2
+appdirs>=1.4.2
 cffi==1.9.1
 click==6.7
 codeclimate-test-reporter==0.2.1
