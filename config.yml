@@ -19,7 +19,8 @@ sources:
             # Mapping of column names -> API fields
             # Columns that aren't mentioned get ignored.
             mapping:
-                "@context": "https://raw.githubusercontent.com/UN-OCHA/taas-data/master/json/v1/functional_roles.jsonld"
+                "@context": >
+                  https://raw.githubusercontent.com/UN-OCHA/taas-data/master/json/v1/functional_roles.jsonld
                 "@id": ID
                 label: Preferred Term
                 label_fr: French Term
