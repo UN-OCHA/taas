@@ -4,3 +4,8 @@ omit=
     venv/*
     setup.py
     tests/*
+
+[report]
+exclude_lines =
+    # We don't need coverage of abstract/unimplemented methods
+    raise NotImplementedError
