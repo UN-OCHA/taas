@@ -12,7 +12,7 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.vendor="UN-OCHA" \
       org.label-schema.version=$VERSION \
       org.label-schema.name="taas" \
-      org.label-schema.description="This container provides a python environments for Taxonomy as a Service." \
+      org.label-schema.description="This container provides a python environment for Taxonomy as a Service." \
       org.label-schema.vcs-url=$VCS_URL \
       org.label-schema.vcs-ref=$VCS_REF
 
