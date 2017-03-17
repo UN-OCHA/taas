@@ -42,7 +42,7 @@ If you really want to...
 $ git checkout UN-OCHA/taas
 $ git checkout UN-OCHA/taas-data
 $ cd taas
-$ docker build .
+$ make docker tag VERSION=1
 $ docker run                                                \
     --rm --name tmp-tass                                    \
     -v ~/.config/hub:/root/.config/hub                      \
@@ -55,7 +55,7 @@ $ docker run                                                \
     -e 'GIT_COMMITTER_EMAIL=paul@humanitarianresponse.info' \
     -e 'GIT_AUTHOR_NAME=BeepBoop'                           \
     -e 'GIT_AUTHOR_EMAIL=paul@humanitarianresponse.info'    \
-    YourDockerBuildHere make update
+    unochaorg/taas:1 make update
 ```
 
 Things to note:
