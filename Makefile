@@ -53,7 +53,7 @@ tag:
 	docker tag $(IMAGE_HASH) $(ORGANISATION)/$(IMAGE):$(VERSION)
 
 clean:
-	rm -rf venv *.pyc .cache tests/__pycache__ .coverage taas.egg-info htmlcov buidlog.txt
+	rm -rf venv *.pyc taas/*.pyc .cache tests/__pycache__ .coverage taas.egg-info htmlcov buidlog.txt
 
 # Magical line that allows us to force execution of a target
 FORCE:
