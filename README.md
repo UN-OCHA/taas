@@ -44,7 +44,7 @@ $ git checkout UN-OCHA/taas-data
 $ cd taas
 $ docker build .
 $ docker run                                                \
-    --rm --name tmp-tass                                    \
+    --rm --name tmp-taas                                    \
     -v ~/.config/hub:/root/.config/hub                      \
     -v ~/.ssh:/root/.ssh                             \
     -v ~/taas:/tmp/taas                                     \
