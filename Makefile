@@ -7,7 +7,7 @@ venv: requirements.txt
 test: venv FORCE
 	venv/bin/nosetests --with-coverage --cover-package=.
 	venv/bin/pep8 . --exclude venv --max-line-length 120
-	venv/bin/yamllint .
+	venv/bin/yamllint -d relaxed .
 
 # Reports tests to our CI providers and friends
 test-report: test FORCE
