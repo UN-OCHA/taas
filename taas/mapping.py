@@ -1,7 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
 
-# XXX: Is it recommended I inherit from object?
 class Mapping(object):
     """
         This class handles mappings between our raw input, and what we generate.
