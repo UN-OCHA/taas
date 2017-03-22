@@ -58,7 +58,14 @@ class Concat(Map):
         self.post = config.get("postfix", "")
 
     def emit(self, row):
-        return self.pre + super(self.__class__, self).emit(row) + self.post
+        value = super(self.__class__, self).emit(row)
+
+        # This implies our field was optional. If it wasn't,
+        # our parent class would have raised an exception.
+        if value is None:
+            return None
+
+        return self.pre + value + self.post
 
 
 # Helper/builder functions
