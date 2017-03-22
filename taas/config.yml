@@ -1,0 +1,44 @@
+---
+# TODO: We should have a config.d or similar setup; this means adding
+#       additional services doesn't result in them fighting for control of the
+#       same config file.
+
+sources:
+    # This maps directly to the API URL
+    functional_roles:
+        v1:
+            # Extracted from the spreadsheet URL
+            key: 1c9wehuauQAAegElIRI6vhWktKSI-PcPjHHiXdqASonk
+
+            # Sheet number. Extract from the spreadsheet URL as well.
+            gid: 0
+
+            # Mapping of column names -> API fields
+            # Columns that aren't mentioned get ignored.
+            mapping:
+                "@context":
+                    type: literal
+                    value: https://raw.githubusercontent.com/UN-OCHA/taas-data/master/json/v1/functional_roles.jsonld
+                "@id":
+                    type: concat
+                    prefix: http://vocabulary.unocha.org/FunctionalRole/
+                    field: ID
+
+                    # XXX: This shouldn't be optional, but we're missing an
+                    #      ID in the sheet, so it is for now.
+                    optional: True
+
+                scope: Scope
+
+                label.i-default: Preferred Term
+                label.en: Preferred Term
+
+                label.fr:
+                    type: map
+                    field: French Term
+                    optional: True
+
+                label.es:
+                    type: map
+                    field: Spanish Term
+                    optional: True

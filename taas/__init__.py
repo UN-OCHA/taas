@@ -5,6 +5,8 @@ import sys
 import urllib
 import yaml
 
+from taas.mapping import make_map
+
 """Supporting functions for UN-OCHA's Taxonomy As A Service (TAAS) project."""
 
 
@@ -34,6 +36,7 @@ def _data_root():
 
     return os.path.join(
         project_root(),
+        "..",
         "..",
         "taas-data"
     )
@@ -134,7 +137,7 @@ def save_google_sheet(name, key, gid, file_format="csv", directory=None):
     urllib.urlretrieve(url, filename)
 
 
-def normalise_sheet(raw, base_uri, mapping):
+def normalise_sheet(raw, mapping):
     """
         Converts data from the form found in .csv files to that which will be served by
         our final JSON system.
@@ -143,20 +146,15 @@ def normalise_sheet(raw, base_uri, mapping):
         Mapping is a dict of cooked->raw pairs (eg: 'label' : 'Preferred Term')
     """
 
+    fieldmap = make_map(mapping)
+
     cooked = []
 
     for row in raw:
-        item = {}
-        for field in mapping:
-            json_field = field
-            if mapping[field] in row:
-                if field == "@id":
-                    item[json_field] = base_uri + row[mapping[field]]
-                else:
-                    item[json_field] = row[mapping[field]]
-            else:
-                item[json_field] = mapping[field]
-        cooked.append(item)
+        cooked_row = {}
+        for label, processor in fieldmap.items():
+            cooked_row[label] = processor.emit(row)
+        cooked.append(cooked_row)
 
     return cooked
 
@@ -188,7 +186,7 @@ def save_json(name, version, data, directory=None):
         json.dump(data, jsonfile, indent=4, sort_keys=True)
 
 
-def google_sheet_to_json(name, version, key, gid, base_uri, mapping, directory=None):
+def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
     """
         Does the entire process of downloading a google sheet, mapping
         the fields, and saving it as JSON.
@@ -201,7 +199,7 @@ def google_sheet_to_json(name, version, key, gid, base_uri, mapping, directory=N
 
     save_google_sheet(name, key, gid)
     raw = read_sheet_csv(name)
-    cooked = normalise_sheet(raw, base_uri, mapping)
+    cooked = normalise_sheet(raw, mapping)
     save_json(name, version, cooked)
 
 
@@ -222,7 +220,7 @@ def process_source(source_name, source):
         options = source[version]
 
         google_sheet_to_json(
-            source_name, version, options['key'], options['gid'], options['base_uri'], options['mapping']
+            source_name, version, options['key'], options['gid'], options['mapping']
         )
 
 

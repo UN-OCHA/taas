@@ -56,3 +56,34 @@ class Concat(Map):
 
     def emit(self, row):
         return self.pre + super(self.__class__, self).emit(row) + self.post
+
+
+# Helper/builder functions
+
+map_type = {
+    "literal": Literal,
+    "map": Map,
+    "concat": Concat
+}
+
+
+def make_map(mapping):
+    """
+        Takes a config.yml mapping, and returns a dict of mappers.
+    """
+
+    # TODO: Is this the best place for this? Should it be a @staticmethod,
+    #       or even part of its own class?
+
+    fieldmap = {}
+
+    for field, config in mapping.items():
+        if type(config) is str:
+            # Default case: Map directly from spreadsheet
+            fieldmap[field] = Map({"field": mapping[field]})
+        else:
+            # Complex case!
+            classname = map_type[config["type"]]
+            fieldmap[field] = classname(mapping[field])
+
+    return fieldmap
