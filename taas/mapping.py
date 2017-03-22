@@ -40,8 +40,11 @@ class Map(Mapping):
     def emit(self, row):
         value = row[self.field]
 
-        if not self.optional and len(value) == 0:
-            raise ValueError("Required field {} missing in data".format(self.field))
+        if len(value) == 0:
+            if self.optional:
+                value = None
+            else:
+                raise ValueError("Required field {} missing in data".format(self.field))
 
         return value
 

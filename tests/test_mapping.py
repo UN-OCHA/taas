@@ -33,7 +33,16 @@ class TestMapping(unittest.TestCase):
             "baz"
         )
 
-    # TODO: Test *optional* maps.
+    def test_map2(self):
+        mymap = Map({"field": "foo", "optional": True})
+
+        self.assertEqual(mymap.emit({"foo": ""}), None)
+        self.assertEqual(mymap.emit({"foo": "bar"}), "bar")
+
+        strictmap = Map({"field": "foo"})
+
+        with self.assertRaises(ValueError):
+            strictmap.emit({"foo": ""})
 
     def test_concat(self):
         concat = Concat({
