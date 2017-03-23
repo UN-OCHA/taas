@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+from builtins import super
 
 
 class Mapping(object):
@@ -53,12 +54,12 @@ class Concat(Map):
     """A map, but concatenated with static strings."""
 
     def __init__(self, config):
-        super(self.__class__, self).__init__(config)
+        super().__init__(config)
         self.pre = config.get("prefix", "")
         self.post = config.get("postfix", "")
 
     def emit(self, row):
-        value = super(self.__class__, self).emit(row)
+        value = super().emit(row)
 
         # This implies our field was optional. If it wasn't,
         # our parent class would have raised an exception.
