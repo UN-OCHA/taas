@@ -33,7 +33,7 @@ class TestMapping(unittest.TestCase):
             "baz"
         )
 
-    def test_map2(self):
+    def test_map_optional(self):
         mymap = Map({"field": "foo", "optional": True})
 
         self.assertEqual(mymap.emit({"foo": ""}), None)
@@ -57,10 +57,18 @@ class TestMapping(unittest.TestCase):
         )
 
     def test_make_map(self):
+        """
+        Tests that the `make_map` function is able to correctly return each of
+        our mapping classes.
+        """
 
         # TODO: This should be a reusable chunk of data we can put somewhere.
         mapping = {
+
+            # Foo uses the default settings (map)
             "foo": "bar",
+
+            # Baz is the same, but explicit
             "baz": {
                 "type": "map",
                 "field": "bar"

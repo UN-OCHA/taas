@@ -10,7 +10,8 @@ sources:
             # Extracted from the spreadsheet URL
             key: 1c9wehuauQAAegElIRI6vhWktKSI-PcPjHHiXdqASonk
 
-            # Sheet number. Extract from the spreadsheet URL as well.
+            # Sheet number. Obtained from the google spreadsheet URL
+            # at the end (`gid=XX`).
             gid: 0
 
             # Mapping of column names -> API fields
@@ -24,12 +25,14 @@ sources:
                     prefix: http://vocabulary.unocha.org/FunctionalRole/
                     field: ID
 
-                    # XXX: This shouldn't be optional, but we're missing an
-                    #      ID in the sheet, so it is for now.
+                    # XXX: This shouldn't be optional, but the current dataset
+                    #      is missing an ID in the sheet, so it is for now.
                     optional: True
 
                 scope: Scope
 
+                # These all form a language map. See TAAS-16 for more details.
+                # https://humanitarian.atlassian.net/browse/TAAS-16
                 label.i-default: Preferred Term
                 label.en: Preferred Term
 
