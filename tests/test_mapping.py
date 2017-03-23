@@ -1,4 +1,4 @@
-from taas.mapping import Literal, Map, Concat, make_map
+from taas.mapping import Literal, Map, Concat, Link, make_map
 import unittest
 
 
@@ -7,7 +7,8 @@ class TestMapping(unittest.TestCase):
     row = {
         "id": "3",
         "foo": "bar",
-        "baz": "bazza"
+        "baz": "bazza",
+        "link": "42 - Some other endpoint"
     }
 
     def test_literal(self):
@@ -54,6 +55,29 @@ class TestMapping(unittest.TestCase):
         self.assertEqual(
             concat.emit(self.row),
             "https://example.com/3/self"
+        )
+
+    def test_concat_optional(self):
+        concat = Concat({
+            "field": "id",
+            "prefix": "https://example.com/",
+            "optional": True
+        })
+
+        self.assertEqual(
+            concat.emit({"id": ""}),
+            None
+        )
+
+    def test_link(self):
+        link = Link({
+            "field": "link",
+            "prefix": "https://example.com/"
+        })
+
+        self.assertEqual(
+            link.emit(self.row),
+            "https://example.com/42"
         )
 
     def test_make_map(self):
