@@ -54,3 +54,36 @@ sources:
                 acronym: ACRONYM
                 group_type: Group Type
                 homepage: Homepage
+
+    countries:
+        beta-v1:
+            key: 1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY
+            gid: 1528390745
+            mapping:
+                id: ID
+
+                iso3:
+                    field: ISO 3166-3:2013 Alpha 3-Codes
+                    optional: True
+
+                iso2:
+                    field: ISO 3166-2:2013 Alpha 2-Codes
+                    optional: True
+
+                admin_level:
+                    field: Admin Level
+                    optional: True
+
+                # Label is now part of a JSON map, as we expect to add
+                # additional label terms in the future for
+                # interoperability with various services.
+
+                label.default: Preferred Term
+
+                geolocation.lat:
+                    field: Latitude
+                    optional: True
+
+                geolocation.lon:
+                    field: Longitude
+                    optional: True
