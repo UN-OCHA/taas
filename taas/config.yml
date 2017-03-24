@@ -43,3 +43,64 @@ sources:
                 label.es:
                     field: Spanish Term
                     optional: True
+
+    countries:
+        v1:
+            key: 1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY
+            gid: 1528390745
+            mapping:
+                # id and iso3 are in the original "locations" API.
+                # https://www.humanitarianresponse.info/api/v1.0/locations
+                id: ID
+
+                iso3:
+                    field: ISO 3166-3:2013 Alpha 3-Codes
+                    optional: True
+
+                # The orignal API codes the ISO-2 code as 'pcode'. We don't.
+                iso2:
+                    field: ISO 3166-2:2013 Alpha 2-Codes
+                    optional: True
+
+                # We have historical ISO-3166 data, but it does not appear in
+                # the original API, has only a single location in our
+                # spreadsheet which has a code. Since we're going for a minimum
+                # viable product, and ISO standards are complex, we're not
+                # publishing it here.
+
+                # m49 code is new with our API.
+                m49:
+                    field: m49 numerical code
+                    optional: True
+
+                # Label is in the original API, but we now have a bunch of
+                # alternatives.  We supply a map because that shows semantic
+                # association. This is *not* backwards compatible, but makes
+                # it very clear that these are all variations of the same name.
+                label.default: Preferred Term
+
+                label.hrinfo:
+                    field:
+                        - HRinfo Alt Term
+                        - Preferred Term
+
+                # Reliefweb has *two* different names for countries, depending
+                # on where they get used.
+                label.reliefweb-name:
+                    field:
+                        - RW Name Alt Term
+                        - Preferred Term
+
+                label.reliefweb-web:
+                    field:
+                        - RW Website Alt Term
+                        - Preferred Term
+
+                label.m49:
+                    field:
+                        - m49 Alt Term
+                        - Preferred Term
+
+                # Our locations intentionally no longer include Lat/Long.
+                # Because this is allegedly a list of countries, we do not
+                # include admin level either.
