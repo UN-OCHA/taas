@@ -5,6 +5,8 @@ import sys
 import urllib
 import yaml
 
+from taas.mapping import make_map
+
 """Supporting functions for UN-OCHA's Taxonomy As A Service (TAAS) project."""
 
 
@@ -34,6 +36,7 @@ def _data_root():
 
     return os.path.join(
         project_root(),
+        "..",
         "..",
         "taas-data"
     )
@@ -141,15 +144,36 @@ def normalise_sheet(raw, mapping):
 
         Raw is the data as produced from read_sheet_csv().
         Mapping is a dict of cooked->raw pairs (eg: 'label' : 'Preferred Term')
+
+        Fields containing a . in their name will be turned into maps. Eg:
+        `label.en`, `label.es` and `label.fr` become three keys in the `label` map.
+        Only one level of embedding is supported.
     """
+
+    fieldmap = make_map(mapping)
 
     cooked = []
 
     for row in raw:
-        item = {}
-        for field in mapping:
-            item[field] = row[mapping[field]]
-        cooked.append(item)
+        cooked_row = {}
+        for label, processor in fieldmap.items():
+            result = processor.emit(row)
+
+            if '.' in label:
+                # TODO: Would be nice to support any number of fields
+                # TODO: Refactor this into a separate, testable function.
+                keys = label.split('.', 1)
+                topkey = keys[0]
+                subkey = keys[1]
+
+                if topkey not in cooked_row:
+                    cooked_row[topkey] = {}
+
+                cooked_row[topkey][subkey] = result
+            else:
+                cooked_row[label] = result
+
+        cooked.append(cooked_row)
 
     return cooked
 
