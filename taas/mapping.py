@@ -32,22 +32,38 @@ class Literal(Mapping):
 
 
 class Map(Mapping):
-    """The most common mapping. Turns a field in our data into a field in our output."""
+    """The most common mapping. Turns a field in our data into a field in our output.
+
+    If multiple fields are passed, they'll be tried in order until one with data is found.
+
+    If no fields contain data, a ValueError exception will be thrown unless `optional`
+    is set to True in the config.
+    """
 
     def __init__(self, config):
-        self.field = config["field"]
+
+        if type(config["field"]) is str:
+            # If we're passed a single field, then listify it into an array.
+            self.field = [config["field"]]
+        else:
+            # Otherwise we can store the array as-is.
+            self.field = config["field"]
+
         self.optional = config.get("optional", False)
 
     def emit(self, row):
-        value = row[self.field]
 
-        if len(value) == 0:
-            if self.optional:
-                value = None
-            else:
-                raise ValueError("Required field {} missing in data".format(self.field))
+        # Walk through our fields until until we find one that contains data.
+        for field in self.field:
+            value = row[field]
 
-        return value
+            if len(value) > 0:
+                return value
+
+        if self.optional:
+            return None
+
+        raise ValueError("Required field(s) {} missing in data: {}".format(self.field, row))
 
 
 class Concat(Map):

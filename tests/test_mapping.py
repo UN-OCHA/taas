@@ -45,6 +45,16 @@ class TestMapping(unittest.TestCase):
         with self.assertRaises(ValueError):
             strictmap.emit({"foo": ""})
 
+    def test_map_extended(self):
+        """Tests the extended map sequence, which takes multiple fields"""
+        mymap = Map({"field": ["foo", "bar"]})
+
+        self.assertEqual(mymap.emit({"foo": "Foo", "bar": "Bar"}), "Foo")
+        self.assertEqual(mymap.emit({"foo": "", "bar": "Bar"}), "Bar")
+
+        with self.assertRaises(ValueError):
+            mymap.emit({"foo": "", "bar": ""})
+
     def test_concat(self):
         concat = Concat({
             "field": "id",
