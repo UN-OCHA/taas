@@ -37,11 +37,9 @@ sources:
                 label.en: Preferred Term
 
                 label.fr:
-                    type: map
                     field: French Term
                     optional: True
 
                 label.es:
-                    type: map
                     field: Spanish Term
                     optional: True
