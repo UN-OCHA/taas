@@ -70,8 +70,37 @@ sources:
                     field: ISO 3166-2:2013 Alpha 2-Codes
                     optional: True
 
+                # Unofficial but generally used fields. These
+                # default to the ISO code where it exists.
+                x-alpha-2:
+                    field:
+                        - x Alpha2 codes
+                        - ISO 3166-2:2013 Alpha 2-Codes
+                    optional: True
+
+                x-alpha-3:
+                    field:
+                        - x Alpha3 codes
+                        - ISO 3166-3:2013 Alpha 3-Codes
+                    optional: True
+
+                # The old HRinfo ID, in case people want to match.
+                hrinfo_id:
+                    field: HRinfo ID
+                    optional: True
+
+                # Ditto ReliefWeb
+                reliefweb_id:
+                    field: RW ID
+                    optional: True
+
+                # To keep compatibility with the prior HRinfo API.
                 admin_level:
                     field: Admin Level
+                    optional: True
+
+                m49:
+                    field: m49 numerical code
                     optional: True
 
                 # Label is now part of a JSON map, as we expect to add
@@ -79,6 +108,29 @@ sources:
                 # interoperability with various services.
 
                 label.default: Preferred Term
+
+                label.humanitarianresponse:
+                    field:
+                        - HRinfo Alt Term
+                        - Preferred Term
+
+                label.reliefweb-short:
+                    field:
+                        - RW Short Name
+                        - Preferred Term
+
+                label.reliefweb-api:
+                    field:
+                        - RW API Alt Term
+                        - Preferred Term
+
+                label.m49:
+                    field:
+                        - m49 Alt Term
+                        - Preferred Term
+
+                # Lat/Long are presented the same way as they
+                # are in HRinfo
 
                 geolocation.lat:
                     field: Latitude
