@@ -45,3 +45,14 @@ sources:
                     type: map
                     field: Spanish Term
                     optional: True
+
+    global_clusters:
+        v1:
+            key: 1SxSircxhXMZCe0PWafCht-whjBdI9UqoeFeSUbiLGc4
+            gid: 0
+            mapping:
+                id: HRinfo ID
+                label: Preferred Term
+                acryonym: ACRONYM
+                group: Group
+                homepage: Homepage
