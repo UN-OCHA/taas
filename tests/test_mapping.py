@@ -107,6 +107,12 @@ class TestMapping(unittest.TestCase):
                 "type": "map",
                 "field": "bar"
             },
+
+            # Bazza is the same, type: map is assumed.
+            "bazza": {
+                "field": "bar"
+            },
+
             "lit": {
                 "type": "literal",
                 "value": "MyLiteralString"
@@ -122,5 +128,6 @@ class TestMapping(unittest.TestCase):
 
         assert(isinstance(made_map["foo"], Map))
         assert(isinstance(made_map["baz"], Map))
+        assert(isinstance(made_map["bazza"], Map))
         assert(isinstance(made_map["lit"], Literal))
         assert(isinstance(made_map["con"], Concat))

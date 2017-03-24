@@ -141,7 +141,7 @@ def make_map(mapping):
             fieldmap[field] = Map({"field": mapping[field]})
         else:
             # Complex case!
-            classname = map_type[config["type"]]
+            classname = map_type[config.get("type", "map")]
             fieldmap[field] = classname(mapping[field])
 
     return fieldmap
