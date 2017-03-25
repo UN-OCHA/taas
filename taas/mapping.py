@@ -10,7 +10,7 @@ class Mapping(object):
     # We're an abstract class
     __metaclass__ = ABCMeta
 
-    # This was originally called 'value', but apparently that's a
+    # NOTE(pjf): This was originally called 'value', but apparently that's a
     # special method name.
     @abstractmethod
     def emit(self, row):
