@@ -62,6 +62,15 @@ sources:
                     field: ISO 3166-2:2013 Alpha 2-Codes
                     optional: True
 
+                # The old HRinfo ID, in case people want to match.
+                hrinfo_id:
+                    field: HRinfo ID
+                    optional: True
+
+                admin_level:
+                    field: Admin Level
+                    optional: True
+
                 # We have historical ISO-3166 data, but it does not appear in
                 # the original API, has only a single location in our
                 # spreadsheet which has a code. Since we're going for a minimum
@@ -79,7 +88,7 @@ sources:
                 # it very clear that these are all variations of the same name.
                 label.default: Preferred Term
 
-                label.hrinfo:
+                label.humanitarianresponse:
                     field:
                         - HRinfo Alt Term
                         - Preferred Term
@@ -101,6 +110,12 @@ sources:
                         - m49 Alt Term
                         - Preferred Term
 
-                # Our locations intentionally no longer include Lat/Long.
-                # Because this is allegedly a list of countries, we do not
-                # include admin level either.
+                # Lat/Long are a map, these keep backwards compatibility
+                # with our old API.
+                geolocation.lat:
+                    field: Latitude
+                    optional: True
+
+                geolocation.lon:
+                    field: Longitude
+                    optional: True
