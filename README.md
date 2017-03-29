@@ -22,14 +22,18 @@ Activate the virtual environment:
 
     $ . env/bin/activate
 
-Fetch updates with `fetch`. Make sure you have the `UN-OCHA/taas-data` directory checked
+Fetch updates with `gss2json`. Make sure you have the `UN-OCHA/taas-data` directory checked
 out the same level as `taas`, or set your `TAAS_DATA` environment variable first.
 
-    $ fetch
+    $ gss2json
 
-Create a pull-request using `update.py`:
+Create a pull-request by adding the `--pull` switch:
 
-    $ bin/update.py
+    $ gss2json --pull
+
+Call with `--help` for more details:
+
+    $ gss2json --help
 
 ## Contributing
 
@@ -48,7 +52,7 @@ $ make docker tag VERSION=1
 $ docker run                                                \
     --rm --name tmp-taas                                    \
     -v ~/.config/hub:/root/.config/hub                      \
-    -v ~/.ssh:/root/.ssh                             \
+    -v ~/.ssh:/root/.ssh                                    \
     -v ~/taas:/tmp/taas                                     \
     -v ~/taas-data:/tmp/taas-data                           \
     -w /tmp/taas                                            \
