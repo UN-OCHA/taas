@@ -1,10 +1,12 @@
 import csv
 import json
 import os
+import re
 import sys
 import urllib
 import yaml
 
+from collections import namedtuple
 from taas.mapping import make_map
 
 """Supporting functions for UN-OCHA's Taxonomy As A Service (TAAS) project."""
@@ -231,6 +233,32 @@ def process_csv(filename, mapping, directory=None):
     raw = read_sheet_csv(filename, directory)
     cooked = normalise_sheet(raw, mapping)
     return add_metadata(cooked)
+
+
+def split_url(url):
+    """
+        Splits a URL into its key and gid. Returns a (key,gid) tuple.
+
+        Raises a ValueError if parsing fails.
+    """
+
+    # I've spent two decades writing Perl. I've *so* got this.
+    pattern = re.compile(r'''
+        https?://docs.google.com/spreadsheets/d/    # Leader
+        (?P<key> [^/]+)                             # Key
+        (?:/edit)?                                  # Optional edit
+        /?                                          # Optional trailing slash
+        \#gid=(?P<gid> \d+)                         # Gid
+    ''', re.VERBOSE)
+
+    m = pattern.match(url)
+
+    if m is None:
+        raise ValueError("{} cannot be parsed into key and gid".format(url))
+
+    Sheet = namedtuple('Sheet', ['key', 'gid'])
+
+    return Sheet(m.group('key'), m.group('gid'))
 
 
 def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
