@@ -43,3 +43,27 @@ sources:
                 label.es:
                     field: Spanish Term
                     optional: True
+
+    organizations:
+        beta-v1:
+            key: 1oa7Wknz64dMQlV2XsW0ssjh6Gw5SnHVfGxDSw_5eKOQ
+            gid: 518938746
+            mapping:
+                id: HR info ID
+                label: Preferred Term
+                acronym:
+                    type: map
+                    field: ACRONYM
+                    optional: True
+                homepage:
+                    type: map
+                    field: homepage
+                    optional: True
+                type:
+                    type: link
+                    field: OrgTypeID - OrgTypePreferredTerm
+                    prefix: https://www.humanitarianresponse.info/en/api/v1.0/organization_types/
+                fts_id:
+                    type: map
+                    field: FinancialTrackingService ID
+                    optional: True
