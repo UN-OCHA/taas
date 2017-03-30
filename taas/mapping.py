@@ -32,22 +32,38 @@ class Literal(Mapping):
 
 
 class Map(Mapping):
-    """The most common mapping. Turns a field in our data into a field in our output."""
+    """The most common mapping. Turns a field in our data into a field in our output.
+
+    If multiple fields are passed, they'll be tried in order until one with data is found.
+
+    If no fields contain data, a ValueError exception will be thrown unless `optional`
+    is set to True in the config.
+    """
 
     def __init__(self, config):
-        self.field = config["field"]
+
+        if type(config["field"]) is str:
+            # If we're passed a single field, then listify it into an array.
+            self.field = [config["field"]]
+        else:
+            # Otherwise we can store the array as-is.
+            self.field = config["field"]
+
         self.optional = config.get("optional", False)
 
     def emit(self, row):
-        value = row[self.field]
 
-        if len(value) == 0:
-            if self.optional:
-                value = None
-            else:
-                raise ValueError("Required field {} missing in data".format(self.field))
+        # Walk through our fields until until we find one that contains data.
+        for field in self.field:
+            value = row[field]
 
-        return value
+            if len(value) > 0:
+                return value
+
+        if self.optional:
+            return None
+
+        raise ValueError("Required field(s) {} missing in data: {}".format(self.field, row))
 
 
 class Concat(Map):
@@ -61,6 +77,15 @@ class Concat(Map):
     def emit(self, row):
         value = super().emit(row)
 
+        return self._emit(value)
+
+    def _emit(self, value):
+        """
+            Internal function that generates our concatenated string.
+            Separated out for the benefit of child classes that may
+            wish to pre-adjust our values.
+        """
+
         # This implies our field was optional. If it wasn't,
         # our parent class would have raised an exception.
         if value is None:
@@ -69,12 +94,34 @@ class Concat(Map):
         return self.pre + value + self.post
 
 
+class Link(Concat):
+    """
+    A smart concat class that can handle our link format
+    in the form "ID - Human String"
+    """
+
+    def __init__(self, config):
+        # Even though we're not doing anything here, we still have
+        # to delegate our __init__ otherwise we end up recursing.
+        super().__init__(config)
+
+    def emit(self, row):
+        # We'll start by getting the raw data.
+        raw = Map.emit(self, row)
+
+        # Then we drop everything before a literal ' - '
+        ident = raw.split(' - ', 1)[0]
+
+        # And pass up to our parent class to turn into a link
+        return super()._emit(ident)
+
 # Helper/builder functions
 
 map_type = {
     "literal": Literal,
     "map": Map,
-    "concat": Concat
+    "concat": Concat,
+    "link": Link
 }
 
 
@@ -94,7 +141,7 @@ def make_map(mapping):
             fieldmap[field] = Map({"field": mapping[field]})
         else:
             # Complex case!
-            classname = map_type[config["type"]]
+            classname = map_type[config.get("type", "map")]
             fieldmap[field] = classname(mapping[field])
 
     return fieldmap

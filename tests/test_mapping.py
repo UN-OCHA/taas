@@ -1,4 +1,4 @@
-from taas.mapping import Literal, Map, Concat, make_map
+from taas.mapping import Literal, Map, Concat, Link, make_map
 import unittest
 
 
@@ -7,7 +7,8 @@ class TestMapping(unittest.TestCase):
     row = {
         "id": "3",
         "foo": "bar",
-        "baz": "bazza"
+        "baz": "bazza",
+        "link": "42 - Some other endpoint"
     }
 
     def test_literal(self):
@@ -44,6 +45,16 @@ class TestMapping(unittest.TestCase):
         with self.assertRaises(ValueError):
             strictmap.emit({"foo": ""})
 
+    def test_map_extended(self):
+        """Tests the extended map sequence, which takes multiple fields"""
+        mymap = Map({"field": ["foo", "bar"]})
+
+        self.assertEqual(mymap.emit({"foo": "Foo", "bar": "Bar"}), "Foo")
+        self.assertEqual(mymap.emit({"foo": "", "bar": "Bar"}), "Bar")
+
+        with self.assertRaises(ValueError):
+            mymap.emit({"foo": "", "bar": ""})
+
     def test_concat(self):
         concat = Concat({
             "field": "id",
@@ -54,6 +65,29 @@ class TestMapping(unittest.TestCase):
         self.assertEqual(
             concat.emit(self.row),
             "https://example.com/3/self"
+        )
+
+    def test_concat_optional(self):
+        concat = Concat({
+            "field": "id",
+            "prefix": "https://example.com/",
+            "optional": True
+        })
+
+        self.assertEqual(
+            concat.emit({"id": ""}),
+            None
+        )
+
+    def test_link(self):
+        link = Link({
+            "field": "link",
+            "prefix": "https://example.com/"
+        })
+
+        self.assertEqual(
+            link.emit(self.row),
+            "https://example.com/42"
         )
 
     def test_make_map(self):
@@ -73,6 +107,12 @@ class TestMapping(unittest.TestCase):
                 "type": "map",
                 "field": "bar"
             },
+
+            # Bazza is the same, type: map is assumed.
+            "bazza": {
+                "field": "bar"
+            },
+
             "lit": {
                 "type": "literal",
                 "value": "MyLiteralString"
@@ -88,5 +128,6 @@ class TestMapping(unittest.TestCase):
 
         assert(isinstance(made_map["foo"], Map))
         assert(isinstance(made_map["baz"], Map))
+        assert(isinstance(made_map["bazza"], Map))
         assert(isinstance(made_map["lit"], Literal))
         assert(isinstance(made_map["con"], Concat))
