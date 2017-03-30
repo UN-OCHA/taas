@@ -45,7 +45,7 @@ sources:
                     optional: True
 
     organizations:
-        v1:
+        beta-v1:
             key: 1oa7Wknz64dMQlV2XsW0ssjh6Gw5SnHVfGxDSw_5eKOQ
             gid: 518938746
             mapping:
