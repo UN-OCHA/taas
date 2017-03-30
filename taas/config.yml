@@ -45,7 +45,7 @@ sources:
                     optional: True
 
     countries:
-        v1:
+        beta-v1:
             key: 1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY
             gid: 1528390745
             mapping:
