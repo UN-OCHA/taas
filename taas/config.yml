@@ -54,5 +54,5 @@ sources:
                 id: HRinfo ID
                 label: Preferred Term
                 acryonym: ACRONYM
-                group: Group
+                group_type: Group Type
                 homepage: Homepage
