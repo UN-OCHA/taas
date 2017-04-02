@@ -47,7 +47,7 @@ sources:
                     optional: True
 
     global_clusters:
-        v1:
+        beta-v1:
             key: 1SxSircxhXMZCe0PWafCht-whjBdI9UqoeFeSUbiLGc4
             gid: 0
             mapping:
