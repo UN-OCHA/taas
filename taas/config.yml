@@ -53,6 +53,6 @@ sources:
             mapping:
                 id: HRinfo ID
                 label: Preferred Term
-                acryonym: ACRONYM
+                acronym: ACRONYM
                 group_type: Group Type
                 homepage: Homepage
