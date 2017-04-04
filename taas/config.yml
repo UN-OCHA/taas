@@ -43,3 +43,14 @@ sources:
                 label.es:
                     field: Spanish Term
                     optional: True
+
+    global_clusters:
+        beta-v1:
+            key: 1SxSircxhXMZCe0PWafCht-whjBdI9UqoeFeSUbiLGc4
+            gid: 0
+            mapping:
+                id: HRinfo ID
+                label: Preferred Term
+                acronym: ACRONYM
+                group_type: Group Type
+                homepage: Homepage
