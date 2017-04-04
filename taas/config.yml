@@ -44,7 +44,7 @@ sources:
                     field: Spanish Term
                     optional: True
 
-    global_clusters:
+    global_coordination_groups:
         beta-v1:
             key: 1SxSircxhXMZCe0PWafCht-whjBdI9UqoeFeSUbiLGc4
             gid: 0
