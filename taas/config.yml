@@ -71,7 +71,7 @@ sources:
                     optional: True
 
                 # Unofficial but generally used fields. These
-                # default to the ISO code where it exists.
+                # fail over to the ISO-codes if blank.
                 x-alpha-2:
                     field:
                         - x Alpha2 codes
@@ -89,7 +89,7 @@ sources:
                     field: HRinfo ID
                     optional: True
 
-                # Ditto ReliefWeb
+                # The old ReliefWeb ID, in case people want to match.
                 reliefweb_id:
                     field: RW ID
                     optional: True
