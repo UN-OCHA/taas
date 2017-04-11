@@ -2,9 +2,14 @@
 # Config file for testing
 
 sources:
-    bad_key:
+
+    # Used for testing CSV -> JSON, as well as unicode support.
+    pokedex:
         v1:
-            key: NopeNopeNope
+            key: None
             gid: 0
             mapping:
-                foo: bar
+                id: Pokedex ID
+                name.en: English Name
+                name.jp: Japanese Name
+                type: Type

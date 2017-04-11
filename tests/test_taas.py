@@ -1,55 +1,74 @@
+# vim: set fileencoding=utf-8
+
 import os
 import sys
 import taas
-
-test_root = os.path.dirname(__file__)
-test_config = os.path.join(test_root, "config.yml")
+import unittest
 
 
-def clear_env():
-    # Clean our environment of variables that may screw our tests
+class TestTaas(unittest.TestCase):
+    test_root = os.path.dirname(__file__)
+    test_config = os.path.join(test_root, "config.yml")
 
-    try:
-        del os.environ["TAAS_DATA"]
-    except KeyError:
-        pass
+    def test_process_csv(self):
+        config = taas.read_config(self.test_config)
 
+        result = taas.process_csv(
+            'pokedex',
+            config['sources']['pokedex']['v1']['mapping'],
+            self.test_root
+        )
 
-def test_read_config():
-    config = taas.read_config(test_config)
+        bulbasaur = result['data'][0]
 
-    assert config['sources'] is not None
-    assert config['sources']['bad_key'] is not None
+        # Test all our fields exist, sub-maps are in place, and
+        # we can handle unicode okay.
+        self.assertEqual(bulbasaur['id'], '1')
+        self.assertEqual(bulbasaur['name']['en'], 'Bulbasaur')
+        self.assertEqual(bulbasaur['name']['jp'], 'フシギソウ')
+        self.assertEqual(bulbasaur['type'], 'grass')
 
+    def clear_env(self):
+        # Clean our environment of variables that may screw our tests
 
-def test_taas_data_env():
-    """
-        Tests that we handle the TAAS_DATA environment correctly.
-    """
+        try:
+            del os.environ["TAAS_DATA"]
+        except KeyError:
+            pass
 
-    # Clear env first, just in case
-    clear_env()
+    def test_read_config(self):
+        config = taas.read_config(self.test_config)
 
-    fake_env = "/tmp/somefakedir"
+        self.assertNotEqual(config['sources'], None)
+        self.assertNotEqual(config['sources']['pokedex'], None)
 
-    data = taas.data_root()
-    assert data is not None
+    def test_taas_data_env(self):
+        """
+            Tests that we handle the TAAS_DATA environment correctly.
+        """
 
-    os.environ["TAAS_DATA"] = fake_env
-    data_env = taas.data_root()
+        # Clear env first, just in case
+        self.clear_env()
 
-    assert data_env != data
-    assert data_env == fake_env
+        fake_env = "/tmp/somefakedir"
 
+        data = taas.data_root()
+        self.assertNotEqual(data, None)
 
-def test_data_roots():
-    """
-        Tests our data roots in various ways.
-    """
+        os.environ["TAAS_DATA"] = fake_env
+        data_env = taas.data_root()
 
-    data_root = taas.data_root()
+        self.assertNotEqual(data_env, data)
+        self.assertEqual(data_env, fake_env)
 
-    assert taas.data_root() is not None
+    def test_data_roots(self):
+        """
+            Tests our data roots in various ways.
+        """
 
-    assert taas.sheets_root() == os.path.join(data_root, "sheets")
-    assert taas.json_root() == os.path.join(data_root, "json")
+        data_root = taas.data_root()
+
+        self.assertNotEqual(taas.data_root(), None)
+
+        self.assertEqual(taas.sheets_root(), os.path.join(data_root, "sheets"))
+        self.assertEqual(taas.json_root(), os.path.join(data_root, "json"))
