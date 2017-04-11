@@ -225,17 +225,16 @@ def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
 def process_source(source_name, source):
     """
         Processes a source, generating JSON and potentially other supporting
-        files. Right now this is only able to flip sheets to JSON, but we may
-        support other services in the future.
+        files.
 
-        Expects a dictionary of vesions, with service descriptions underneath.
+        Expects a `source_name`, with which we label our output, and a dictionary
+        of vesions, with service descriptions underneath.
     """
 
     # TODO: We should have a service class definition, rather than trusting our
     #       config file is in the right format.
 
     for version in source:
-
         options = source[version]
 
         google_sheet_to_json(
@@ -243,16 +242,17 @@ def process_source(source_name, source):
         )
 
 
-def process_all_sources(config=None):
+def process_sources(config, sources=None):
     """
-        Processes all sources in a given config, generating JSON output. Uses
-        the default config if none supplied.
+        Uses the config provided to process the sources given.
+
+        Process all sources if none are provided.
     """
+    if sources is None:
+        sources = config['sources']
 
-    if config is None:
-        config = read_config()
+    for source in sources:
+        if source not in config['sources']:
+            raise KeyError("Asked to process source '{}', but not found in config.".format(source))
 
-    sources = config['sources']
-
-    for source_name in sources:
-        process_source(source_name, sources[source_name])
+        process_source(source, config['sources'][source])

@@ -7,7 +7,7 @@ setup(
     py_modules=['taas'],
     entry_points={
         'console_scripts': [
-            "fetch = taas:process_all_sources",
+            "gss2json = taas.cmdline:gss2json"
         ]
     },
 

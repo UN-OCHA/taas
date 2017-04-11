@@ -30,11 +30,8 @@ test-report: test FORCE
 	venv/bin/coveralls
 	venv/bin/codeclimate-test-reporter
 
-fetch:	venv FORCE
-	venv/bin/python bin/fetch.py
-
 update:	venv FORCE
-	venv/bin/python bin/update.py
+	venv/bin/gss2json --push
 
 freeze:
 	venv/bin/pip freeze | grep -v taas.git > requirements.txt
