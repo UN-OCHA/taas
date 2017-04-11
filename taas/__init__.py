@@ -1,10 +1,12 @@
 import csv
 import json
 import os
+import re
 import sys
 import urllib
 import yaml
 
+from collections import namedtuple
 from taas.mapping import make_map
 
 """Supporting functions for UN-OCHA's Taxonomy As A Service (TAAS) project."""
@@ -233,6 +235,53 @@ def process_csv(filename, mapping, directory=None):
     return add_metadata(cooked)
 
 
+def split_url(url):
+    """
+        Splits a URL into its key and gid. Returns a (key,gid) tuple.
+
+        Raises a ValueError if parsing fails.
+    """
+
+    # I've spent two decades writing Perl. I've *so* got this.
+    pattern = re.compile(r'''
+        https?://docs.google.com/spreadsheets/d/    # Leader
+        (?P<key> [^/]+)                             # Key
+        (?:/edit)?                                  # Optional edit
+        /?                                          # Optional trailing slash
+        \#gid=(?P<gid> \d+)                         # Gid
+    ''', re.VERBOSE)
+
+    m = pattern.match(url)
+
+    if m is None:
+        raise ValueError("{} cannot be parsed into key and gid".format(url))
+
+    Sheet = namedtuple('Sheet', ['key', 'gid'])
+
+    return Sheet(m.group('key'), m.group('gid'))
+
+
+def compute_key_gid(source_name, options):
+    """
+        Returns a (key, gid) tuple for the options provided.
+
+        If the config contains both key/gid and url settings, a `KeyError` is raised.
+    """
+
+    key = options.get('key', None)
+    gid = options.get('gid', None)
+
+    # Newer configs have a url, which we split into key/gid.
+    if 'url' in options:
+        if key is not None or gid is not None:
+            raise KeyError(
+                "Config for {} contains both url and key/gid".format(source_name)
+            )
+        (key, gid) = split_url(options['url'])
+
+    return (key, gid)
+
+
 def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
     """
         Does the entire process of downloading a google sheet, mapping
@@ -264,8 +313,10 @@ def process_source(source_name, source):
     for version in source:
         options = source[version]
 
+        (key, gid) = compute_key_gid(source_name, options)
+
         google_sheet_to_json(
-            source_name, version, options['key'], options['gid'], options['mapping']
+            source_name, version, key, gid, options['mapping']
         )
 
 

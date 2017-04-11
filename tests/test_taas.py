@@ -72,3 +72,23 @@ class TestTaas(unittest.TestCase):
 
         self.assertEqual(taas.sheets_root(), os.path.join(data_root, "sheets"))
         self.assertEqual(taas.json_root(), os.path.join(data_root, "json"))
+
+    def test_split_url(self):
+
+        # Our test data is our countries sheet.
+        result = taas.split_url(
+            "https://docs.google.com/spreadsheets/d/1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY/edit#gid=1528390745"
+        )
+
+        self.assertEqual(result.key, "1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY")
+        self.assertEqual(result.gid, "1528390745")
+
+    def test_key_gid_clash(self):
+
+        # Supplying key/gid with URL should give us an error containing our sheet name.
+        with self.assertRaises(KeyError) as ex:
+            taas.compute_key_gid(
+                "MySource", {"key": "foo", "gid": 0, "url": "http://example.com/"}
+            )
+
+        self.assertRegexpMatches(ex.exception.message, "MySource")

@@ -7,12 +7,7 @@ sources:
     # This maps directly to the API URL
     functional_roles:
         beta-v2:
-            # Extracted from the spreadsheet URL
-            key: 1c9wehuauQAAegElIRI6vhWktKSI-PcPjHHiXdqASonk
-
-            # Sheet number. Obtained from the google spreadsheet URL
-            # at the end (`gid=XX`).
-            gid: 0
+            url: https://docs.google.com/spreadsheets/d/1c9wehuauQAAegElIRI6vhWktKSI-PcPjHHiXdqASonk/edit#gid=0
 
             # Mapping of column names -> API fields
             # Columns that aren't mentioned get ignored.
@@ -46,8 +41,7 @@ sources:
 
     global_coordination_groups:
         beta-v1:
-            key: 1SxSircxhXMZCe0PWafCht-whjBdI9UqoeFeSUbiLGc4
-            gid: 0
+            url: https://docs.google.com/spreadsheets/d/1SxSircxhXMZCe0PWafCht-whjBdI9UqoeFeSUbiLGc4/edit#gid=0
             mapping:
                 id: HRinfo ID
                 label: Preferred Term
@@ -57,8 +51,7 @@ sources:
 
     countries:
         beta-v1:
-            key: 1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY
-            gid: 1528390745
+            url: https://docs.google.com/spreadsheets/d/1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY/edit#gid=1528390745
             mapping:
                 id: ID
 
