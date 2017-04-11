@@ -6,7 +6,7 @@
 sources:
     # This maps directly to the API URL
     functional_roles:
-        beta-v1:
+        beta-v2:
             # Extracted from the spreadsheet URL
             key: 1c9wehuauQAAegElIRI6vhWktKSI-PcPjHHiXdqASonk
 
