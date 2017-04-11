@@ -261,6 +261,27 @@ def split_url(url):
     return Sheet(m.group('key'), m.group('gid'))
 
 
+def compute_key_gid(source_name, options):
+    """
+        Returns a (key, gid) tuple for the options provided.
+
+        If the config contains both key/gid and url settings, a `KeyError` is raised.
+    """
+
+    key = options.get('key', None)
+    gid = options.get('gid', None)
+
+    # Newer configs have a url, which we split into key/gid.
+    if 'url' in options:
+        if key is not None or gid is not None:
+            raise KeyError(
+                "Config for {} contains both url and key/gid".format(source_name)
+            )
+        (key, gid) = split_url(options['url'])
+
+    return (key, gid)
+
+
 def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
     """
         Does the entire process of downloading a google sheet, mapping
@@ -292,13 +313,7 @@ def process_source(source_name, source):
     for version in source:
         options = source[version]
 
-        # Older configs had a key and gid pair.
-        key = options.get('key', None)
-        gid = options.get('gid', None)
-
-        # Newer configs have a url, which we split into key/gid.
-        if 'url' in options:
-            (key, gid) = split_url(options['url'])
+        (key, gid) = compute_key_gid(source_name, options)
 
         google_sheet_to_json(
             source_name, version, key, gid, options['mapping']

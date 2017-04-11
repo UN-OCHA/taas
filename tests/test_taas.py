@@ -82,3 +82,13 @@ class TestTaas(unittest.TestCase):
 
         self.assertEqual(result.key, "1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY")
         self.assertEqual(result.gid, "1528390745")
+
+    def test_key_gid_clash(self):
+
+        # Supplying key/gid with URL should give us an error containing our sheet name.
+        with self.assertRaises(KeyError) as ex:
+            taas.compute_key_gid(
+                "MySource", {"key": "foo", "gid": 0, "url": "http://example.com/"}
+            )
+
+        self.assertRegexpMatches(ex.exception.message, "MySource")
