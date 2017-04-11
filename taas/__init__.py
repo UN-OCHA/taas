@@ -292,8 +292,16 @@ def process_source(source_name, source):
     for version in source:
         options = source[version]
 
+        # Older configs had a key and gid pair.
+        key = options.get('key', None)
+        gid = options.get('gid', None)
+
+        # Newer configs have a url, which we split into key/gid.
+        if 'url' in options:
+            (key, gid) = split_url(options['url'])
+
         google_sheet_to_json(
-            source_name, version, options['key'], options['gid'], options['mapping']
+            source_name, version, key, gid, options['mapping']
         )
 
 
