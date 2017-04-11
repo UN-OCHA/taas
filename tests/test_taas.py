@@ -19,7 +19,7 @@ def test_read_config():
     config = taas.read_config(test_config)
 
     assert config['sources'] is not None
-    assert config['sources']['bad_key'] is not None
+    assert config['sources']['pokedex'] is not None
 
 
 def test_taas_data_env():

@@ -205,6 +205,34 @@ def save_json(name, version, data, directory=None):
         json.dump(data, jsonfile, indent=4, sort_keys=True)
 
 
+def add_metadata(data):
+    """
+        Decorates a set of data (as produced by `normalised_sheet`)
+        with metadata. At this time, this only wraps the results in
+        a `data` key
+    """
+
+    # In the future this could add additional top-level fields like
+    # date-created, original data source, alerts, and so on.
+
+    return {
+        "data": data
+    }
+
+
+def process_csv(filename, mapping, directory=None):
+    """
+        Takes a filename, mapping, and optional directory,
+        and returns a data structure with metadata attached,
+        suitable for exporting as a JSON file, or being
+        consumed directly.
+    """
+
+    raw = read_sheet_csv(filename, directory)
+    cooked = normalise_sheet(raw, mapping)
+    return add_metadata(cooked)
+
+
 def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
     """
         Does the entire process of downloading a google sheet, mapping
@@ -217,9 +245,8 @@ def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
         directory = sheets_root()
 
     save_google_sheet(name, key, gid)
-    raw = read_sheet_csv(name)
-    cooked = normalise_sheet(raw, mapping)
-    save_json(name, version, cooked)
+    to_jsonify = process_csv(name, mapping, directory)
+    save_json(name, version, to_jsonify)
 
 
 def process_source(source_name, source):
