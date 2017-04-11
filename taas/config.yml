@@ -139,3 +139,25 @@ sources:
                 geolocation.lon:
                     field: Longitude
                     optional: True
+
+    organization_types:
+        beta-v1:
+            key: 12nKxos71U6lkttpyYTfwI2bDq9yeN1J7jplHocN96_0
+            gid: 0
+            mapping:
+                id: HR.info ID
+                scope: Scope
+
+                label.default: Preferred Term
+                label.reliefweb:
+                    field: RW Alt Term
+                    optional: True
+
+                reliefweb_id:
+                    field: RW API ID
+                    optional: True
+
+                x-reliefweb-term-is:
+                    field: "Match type - RW term is:"
+                    optional: True
+
