@@ -39,8 +39,8 @@ class TestTaas(unittest.TestCase):
     def test_read_config(self):
         config = taas.read_config(self.test_config)
 
-        assert config['sources'] is not None
-        assert config['sources']['pokedex'] is not None
+        self.assertNotEqual(config['sources'], None)
+        self.assertNotEqual(config['sources']['pokedex'], None)
 
     def test_taas_data_env(self):
         """
@@ -53,13 +53,13 @@ class TestTaas(unittest.TestCase):
         fake_env = "/tmp/somefakedir"
 
         data = taas.data_root()
-        assert data is not None
+        self.assertNotEqual(data, None)
 
         os.environ["TAAS_DATA"] = fake_env
         data_env = taas.data_root()
 
-        assert data_env != data
-        assert data_env == fake_env
+        self.assertNotEqual(data_env, data)
+        self.assertEqual(data_env, fake_env)
 
     def test_data_roots(self):
         """
@@ -68,7 +68,7 @@ class TestTaas(unittest.TestCase):
 
         data_root = taas.data_root()
 
-        assert taas.data_root() is not None
+        self.assertNotEqual(taas.data_root(), None)
 
-        assert taas.sheets_root() == os.path.join(data_root, "sheets")
-        assert taas.json_root() == os.path.join(data_root, "json")
+        self.assertEqual(taas.sheets_root(), os.path.join(data_root, "sheets"))
+        self.assertEqual(taas.json_root(), os.path.join(data_root, "json"))
