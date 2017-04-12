@@ -42,8 +42,15 @@ class TestMapping(unittest.TestCase):
 
         strictmap = Map({"field": "foo"})
 
+        # Make sure we get a ValueError if we're missing data
+        # on a required field.
         with self.assertRaises(ValueError):
             strictmap.emit({"foo": ""})
+
+        # Make sure we get a KeyError if we're missing the column
+        # entirely.
+        with self.assertRaises(KeyError):
+            strictmap.emit({"oof": "Not the field you're looking for."})
 
     def test_map_extended(self):
         """Tests the extended map sequence, which takes multiple fields"""

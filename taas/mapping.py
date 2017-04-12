@@ -55,14 +55,24 @@ class Map(Mapping):
 
         # Walk through our fields until until we find one that contains data.
         for field in self.field:
-            value = row[field]
+            value = row.get(field, None)
+
+            if value is None:
+                # Uh oh! An expected column *didn't exist at all*.
+                # Raise a KeyError when that happens.
+                raise KeyError(
+                    "Required column {} missing in data.".format(field)
+                )
 
             if len(value) > 0:
                 return value
 
+        # The column was there, but the data was empty. If it's
+        # option, then we can just return None.
         if self.optional:
             return None
 
+        # No data, but *not* an optional field. Exception time!
         raise ValueError("Required field(s) {} missing in data: {}".format(self.field, row))
 
 
