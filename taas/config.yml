@@ -56,11 +56,11 @@ sources:
                 id: ID
 
                 iso3:
-                    field: ISO 3166-3:2013 Alpha 3-Codes
+                    field: ISO 3166-1 Alpha 3-Codes
                     optional: True
 
                 iso2:
-                    field: ISO 3166-2:2013 Alpha 2-Codes
+                    field: ISO 3166-1 Alpha 2-Codes
                     optional: True
 
                 # Unofficial but generally used fields. These
@@ -68,13 +68,13 @@ sources:
                 x-alpha-2:
                     field:
                         - x Alpha2 codes
-                        - ISO 3166-2:2013 Alpha 2-Codes
+                        - ISO 3166-1 Alpha 2-Codes
                     optional: True
 
                 x-alpha-3:
                     field:
                         - x Alpha3 codes
-                        - ISO 3166-3:2013 Alpha 3-Codes
+                        - ISO 3166-1 Alpha 3-Codes
                     optional: True
 
                 # The old HRinfo ID, in case people want to match.
