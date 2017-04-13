@@ -77,14 +77,17 @@ sources:
                         - ISO 3166-1 Alpha 3-Codes
                     optional: True
 
-                # The old HRinfo ID, in case people want to match.
+                # IDs for other systems, in case anyone wants to match.
                 hrinfo_id:
                     field: HRinfo ID
                     optional: True
 
-                # The old ReliefWeb ID, in case people want to match.
                 reliefweb_id:
                     field: RW ID
+                    optional: True
+
+                fts_api_id:
+                    field: FTS API ID
                     optional: True
 
                 # To keep compatibility with the prior HRinfo API.
