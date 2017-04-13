@@ -125,6 +125,11 @@ sources:
                         - m49 Alt Term
                         - Preferred Term
 
+                label.fts:
+                    field:
+                        - FTS Alt Term
+                        - Preferred Term
+
                 # Lat/Long are presented the same way as they
                 # are in HRinfo
 
