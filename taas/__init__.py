@@ -16,7 +16,7 @@ from taas.mapping import make_map
 def debug(string):
     """Display a debug message."""
     # Simple now, but a function means we can turn them off, or redirect them later.
-    print string
+    print(string)
 
 
 def project_root():
