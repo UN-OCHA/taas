@@ -1,54 +1,5 @@
 ---
-# TODO: We should have a config.d or similar setup; this means adding
-#       additional services doesn't result in them fighting for control of the
-#       same config file.
-
 sources:
-    # This maps directly to the API URL
-    functional_roles:
-        beta-v2:
-            url: https://docs.google.com/spreadsheets/d/1c9wehuauQAAegElIRI6vhWktKSI-PcPjHHiXdqASonk/edit#gid=0
-
-            # Mapping of column names -> API fields
-            # Columns that aren't mentioned get ignored.
-            mapping:
-                "@context":
-                    type: literal
-                    value: https://raw.githubusercontent.com/UN-OCHA/taas-data/master/json/v1/functional_roles.jsonld
-                "@id":
-                    type: concat
-                    prefix: http://vocabulary.unocha.org/FunctionalRole/
-                    field: ID
-
-                    # XXX: This shouldn't be optional, but the current dataset
-                    #      is missing an ID in the sheet, so it is for now.
-                    optional: True
-
-                scope: Scope
-
-                # These all form a language map. See TAAS-16 for more details.
-                # https://humanitarian.atlassian.net/browse/TAAS-16
-                label.i-default: Preferred Term
-                label.en: Preferred Term
-
-                label.fr:
-                    field: French Term
-                    optional: True
-
-                label.es:
-                    field: Spanish Term
-                    optional: True
-
-    global_coordination_groups:
-        beta-v1:
-            url: https://docs.google.com/spreadsheets/d/1SxSircxhXMZCe0PWafCht-whjBdI9UqoeFeSUbiLGc4/edit#gid=0
-            mapping:
-                id: HRinfo ID
-                label: Preferred Term
-                acronym: ACRONYM
-                group_type: Group Type
-                homepage: Homepage
-
     countries:
         beta-v1:
             url: https://docs.google.com/spreadsheets/d/1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY/edit#gid=1528390745
@@ -139,25 +90,4 @@ sources:
 
                 geolocation.lon:
                     field: Longitude
-                    optional: True
-
-    organization_types:
-        beta-v1:
-            key: 12nKxos71U6lkttpyYTfwI2bDq9yeN1J7jplHocN96_0
-            gid: 0
-            mapping:
-                id: HR.info ID
-                scope: Scope
-
-                label.default: Preferred Term
-                label.reliefweb:
-                    field: RW Alt Term
-                    optional: True
-
-                reliefweb_id:
-                    field: RW API ID
-                    optional: True
-
-                x-reliefweb-term-is:
-                    field: "Match type - RW term is:"
                     optional: True
