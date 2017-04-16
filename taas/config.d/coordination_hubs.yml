@@ -1,0 +1,73 @@
+---
+sources:
+
+    # Original data: https://www.humanitarianresponse.info/api/v1.0/offices
+    coordination_hubs:
+        beta-v1:
+            url: https://docs.google.com/spreadsheets/d/1Y-c2YJs4oBBUBH-48K7rVeMPpKHHKWXWjXMm81puvRU/edit#gid=0
+            mapping:
+                id: HR.info ID
+                label: Preferred Term
+
+                operation.id:
+                    type: link
+                    field: Operation
+                    prefix: http://www.humanitarianresponse.info/api/v1.0/operations/
+                    optional: True
+                operation.label:
+                    type: link
+                    field: Operation
+                    from: label
+                    optional: True
+
+                address.premise:
+                    field: Address (free text to include building name/number, street & Postcode)
+                    optional: True
+
+                address.locality:
+                    field: Address - Locality (i.e. City)
+                    optional: True
+
+                address.administrative_area:
+                    field: Address - Administrative area (i.e. State / Province)
+                    optional: True
+
+                address.country.id:
+                    type: link
+                    field: Country
+                    prefix: http://vocabulary.unocha.org/json/beta-v1/countries/
+
+                address.country.label:
+                    type: link
+                    field: Country
+                    from: label
+
+                # TODO: Phones should be split into a list.
+                x-phones:
+                    field: Phones
+                    optional: True
+
+                email:
+                    field: Email
+                    optional: True
+
+                # TODO: Link these to our own data when that's published.
+                organization.id:
+                    type: link
+                    field: Organization
+                    optional: True
+                    prefix: https://www.humanitarianresponse.info/en/api/v1.0/organizations/
+
+                organization.label:
+                    type: link
+                    field: Organization
+                    optional: True
+                    from: label
+
+                # Our links are always just our HR.info ID with a prefix.
+                hrinfo_link:
+                    type: concat
+                    field: HR.info ID
+                    prefix: https://humanitarianresponse.info/node/
+
+                type: Type
