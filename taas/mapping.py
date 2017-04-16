@@ -50,6 +50,7 @@ class Map(Mapping):
             self.field = config["field"]
 
         self.optional = config.get("optional", False)
+        self.trim = config.get("trim", True)
 
     def emit(self, row):
 
@@ -65,6 +66,8 @@ class Map(Mapping):
                 )
 
             if len(value) > 0:
+                if self.trim:
+                    return value.strip()
                 return value
 
         # The column was there, but the data was empty. If it's

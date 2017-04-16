@@ -34,6 +34,23 @@ class TestMapping(unittest.TestCase):
             "baz"
         )
 
+    def test_map_strip(self):
+        mymap = Map({"field": "foo"})
+
+        # Fields should trim spaces by default
+        self.assertEqual(
+            mymap.emit({"foo": " data "}),
+            "data"
+        )
+
+        # If we set trim to false, we should get back unchanged data
+        notrim_map = Map({"field": "foo", "trim": False})
+
+        self.assertEqual(
+            notrim_map.emit({"foo": " data "}),
+            " data "
+        )
+
     def test_map_optional(self):
         mymap = Map({"field": "foo", "optional": True})
 
