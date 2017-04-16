@@ -15,10 +15,6 @@ sources:
                     prefix: http://vocabulary.unocha.org/FunctionalRole/
                     field: ID
 
-                    # XXX: This shouldn't be optional, but the current dataset
-                    #      is missing an ID in the sheet, so it is for now.
-                    optional: True
-
                 scope: Scope
 
                 # These all form a language map. See TAAS-16 for more details.
