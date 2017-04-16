@@ -116,8 +116,13 @@ class Link(Concat):
         super().__init__(config)
 
     def emit(self, row):
-        # We'll start by getting the raw data.
+        # We'll start by getting the raw data. If this is a mandatory
+        # field which is empty, this will throw our exception for us.
         raw = Map.emit(self, row)
+
+        # If there's no data, but we're optional, return nothing.
+        if raw is None:
+            return None
 
         # Then we drop everything before a literal ' - '
         ident = raw.split(' - ', 1)[0]
