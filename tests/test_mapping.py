@@ -92,9 +92,33 @@ class TestMapping(unittest.TestCase):
             "prefix": "https://example.com/"
         })
 
+        # Make sure links work
         self.assertEqual(
             link.emit(self.row),
             "https://example.com/42"
+        )
+
+        # Make sure links throw if the link is missing
+        with self.assertRaises(ValueError):
+            link.emit({"link": ""})
+
+        # Here comes and optional link. It shouldn't throw.
+        optional_link = Link({
+            "field": "link",
+            "prefix": "https://example.com/",
+            "optional": True
+        })
+
+        # Make sure the optional link works the same as a strict link
+        self.assertEqual(
+            optional_link.emit(self.row),
+            "https://example.com/42"
+        )
+
+        # The optional link should return None for empty data.
+        self.assertEqual(
+            optional_link.emit({"link": ""}),
+            None
         )
 
     def test_make_map(self):
