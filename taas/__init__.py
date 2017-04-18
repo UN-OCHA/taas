@@ -1,5 +1,6 @@
 import csv
 import json
+import glob
 import os
 import re
 import sys
@@ -15,7 +16,7 @@ from taas.mapping import make_map
 def debug(string):
     """Display a debug message."""
     # Simple now, but a function means we can turn them off, or redirect them later.
-    print string
+    print(string)
 
 
 def project_root():
@@ -75,21 +76,56 @@ def json_root():
     return data_root("json")
 
 
-def read_config(file=None):
+def _merge_config(new, base):
+    """
+        Internal function that merges config sections into a base config.
+
+        Returns the new config data structure.
+    """
+
+    # Thanks, StackOverflow! http://stackoverflow.com/questions/823196/yaml-merge-in-python
+
+    # If we've got two dicts, merge them.
+    if isinstance(new, dict) and isinstance(base, dict):
+        for k, v in base.iteritems():
+            if k not in new:
+                new[k] = v
+            else:
+                new[k] = _merge_config(new[k], v)
+
+    # If we didn't merge our dicts, this still returns the item we want to add.
+    return new
+
+
+def read_config(path=None):
     """
     Reads the TAAS config and returns it as a data structure.
 
-    Read the default config file if none specified.
+    If given a directory, all files in the directory with a `.yml` extension will
+    be read and merged.
+
+    Read the default config directory if none specified.
 
     Throws on failure.
 
     """
 
-    if file is None:
-        file = os.path.join(project_root(), "config.yml")
+    if path is None:
+        path = os.path.join(project_root(), "config.d")
 
-    with open(file) as stream:
-        return yaml.load(stream)
+    if os.path.isfile(path):
+        with open(path) as stream:
+            return yaml.load(stream)
+
+    # If we're here, we have a directory. (Or we're about
+    # to throw an exception, because we don't.)
+    config = {}
+    for file in glob.glob(os.path.join(path, "*.yml")):
+        with open(file) as stream:
+            sub_config = yaml.load(stream)
+            config = _merge_config(sub_config, config)
+
+    return config
 
 
 def read_sheet_csv(name, directory=None):

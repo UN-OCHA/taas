@@ -9,6 +9,7 @@ import unittest
 class TestTaas(unittest.TestCase):
     test_root = os.path.dirname(__file__)
     test_config = os.path.join(test_root, "config.yml")
+    test_config_d = os.path.join(test_root, "config.d")
 
     def test_process_csv(self):
         config = taas.read_config(self.test_config)
@@ -41,6 +42,14 @@ class TestTaas(unittest.TestCase):
 
         self.assertNotEqual(config['sources'], None)
         self.assertNotEqual(config['sources']['pokedex'], None)
+
+    def test_read_config_d(self):
+        config = taas.read_config(self.test_config_d)
+
+        print config
+
+        self.assertEqual(config['food']['vegemite']['type'], 'breakfast spread')
+        self.assertEqual(config['food']['durian']['type'], 'fruit')
 
     def test_taas_data_env(self):
         """
