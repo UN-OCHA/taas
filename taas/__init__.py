@@ -159,15 +159,15 @@ def save_google_sheet(name, key, gid, file_format="csv", directory=None):
     """
 
     # Base path to downloading sheets
-    export_base_url = "https://docs.google.com/feeds/download/spreadsheets/Export"
+    export_base_url = "https://docs.google.com/spreadsheets/d"
 
     if directory is None:
         directory = sheets_root()
 
     filename = os.path.join(directory, "{}.{}".format(name, file_format))
 
-    url = "{}?exportFormat={}&key={}&gid={}".format(
-        export_base_url, file_format, key, gid)
+    url = "{}/{}/export?format={}&gid={}".format(
+        export_base_url, key, file_format, gid)
 
     debug("Saving {} to {}\n".format(url, filename))
 
