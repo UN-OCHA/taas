@@ -8,18 +8,20 @@ Each source can contain a number of exports, which would usually be version (`v1
 
 Each version has a human-friendly spreadsheet `url` (which we use to generate our own URL for data extraction in CSV), and a `mapping`, which describes how we map spreadsheet columns into JSON structions.
 
-We'll cover the mapping in more detail momentarily, but it consists of JSON field names on the left, and Spreadsheet field names on the right. In the following config, we'd create a file named `functional_roles/example-v1.json` where each record has an `id` field and a `label` field, which came from the `ID` and `Preferred Term` columns in our spreadsheet.
+We'll cover the mapping in more detail momentarily, but it consists of JSON field names on the left, and Spreadsheet field names on the right. In the following config, we'd create a file named `beta-v1/function_roles.json` where each record has an `id` field and a `label` field, which came from the `ID` and `Preferred Term` columns in our spreadsheet.
 
 ```YAML
 ---
 sources:
     functional_roles:
-        example-v1:
+        beta-v1:
             url: https://docs.google.com/spreadsheets/d/1c9wehuauQAAegElIRI6vhWktKSI-PcPjHHiXdqASonk/edit#gid=0
             mapping:
                 id: ID
                 label: Preferred Term
 ```
+
+The `url` field *must* contain a URL complete with the `gid=` parameter at the end. For spreadsheets that consist of multiple sheets, the gid prameter specifies the individual sheet to be read. The `/edit` part of the URL is optional. In almost all cases a simple copy-and-paste will work correctly.
 
 A config file can contain multiple sources, and each source can contain multiple versions.
 
