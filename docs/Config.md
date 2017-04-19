@@ -180,3 +180,9 @@ mapping:
 ```
 
 Link fields *must* contain the space-hyphen-space sequence, otherwise an error will be thrown. They are most useful for editors who must record a machine-readable numeric ID, but want a human-readable label to go with it.
+
+## Config directories
+
+While this document discusses our configuration as if it were a single file, the system also allows a config *directory* to be used, and the `taas/config.d` directory is used by default. Configuration files are read in sequential order and their contents *merged* to form a single configuration.
+
+This means that finding and editing the configuration for a given sheet can be more straightforward, and results in fewer merge conflicts when many configurations are being changed.
