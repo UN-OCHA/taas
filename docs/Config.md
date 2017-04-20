@@ -1,5 +1,9 @@
 # Configuration file format
 
+## Live examples
+
+You can see our existing configurations [in this repo](../taas/config.d).
+
 ## Top level format
 
 Our configuration is in [YAML](http://yaml.org/) format, and consists of a sequence of sources (spreadsheets we're reading from) along with a description how that this data should be transformed into JSON.
