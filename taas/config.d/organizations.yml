@@ -15,11 +15,18 @@ sources:
                     type: map
                     field: homepage
                     optional: True
-                type:
-                    type: link
-                    field: OrgTypeID - OrgTypePreferredTerm
-                    prefix: https://www.humanitarianresponse.info/en/api/v1.0/organization_types/
                 fts_id:
                     type: map
                     field: FinancialTrackingService ID
                     optional: True
+
+                # This gives us a map with a machine-friendly URL,
+                # and a human-friendly ID.
+                type.id:
+                    type: link
+                    field: OrgTypeID - OrgTypePreferredTerm
+                    prefix: https://www.humanitarianresponse.info/en/api/v1.0/organization_types/
+                type.label:
+                    type: link
+                    field: OrgTypeID - OrgTypePreferredTerm
+                    from: label
