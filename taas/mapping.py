@@ -110,13 +110,22 @@ class Concat(Map):
 class Link(Concat):
     """
     A smart concat class that can handle our link format
-    in the form "ID - Human String"
+    in the form "ID - Human String".
+
+    By default this returns the ID but `from: label` can be used
+    to select the label instead.
     """
 
     def __init__(self, config):
-        # Even though we're not doing anything here, we still have
-        # to delegate our __init__ otherwise we end up recursing.
         super().__init__(config)
+        self.return_part = config.get("from", "id")
+
+        if self.return_part not in ['label', 'id']:
+            raise RuntimeError(
+                "link.from set to {} but may only be label or id (in field {})".format(
+                    self.return_part, self.field
+                )
+            )
 
     def emit(self, row):
         # We'll start by getting the raw data. If this is a mandatory
@@ -127,10 +136,15 @@ class Link(Concat):
         if raw is None:
             return None
 
-        # Then we drop everything before a literal ' - '
-        ident = raw.split(' - ', 1)[0]
+        # Then split on a literal ' - '
+        ident, label = raw.split(' - ', 1)
 
-        # And pass up to our parent class to turn into a link
+        # And pass up to our parent class, so it can concat and adjust
+        # to taste.
+
+        if self.return_part == "label":
+            return super()._emit(label)
+
         return super()._emit(ident)
 
 # Helper/builder functions
