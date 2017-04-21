@@ -8,7 +8,7 @@ class TestMapping(unittest.TestCase):
         "id": "3",
         "foo": "bar",
         "baz": "bazza",
-        "link": "42 - Some other endpoint"
+        "link": "42 - Golbat"
     }
 
     def test_literal(self):
@@ -137,6 +137,39 @@ class TestMapping(unittest.TestCase):
             optional_link.emit({"link": ""}),
             None
         )
+
+    def test_link_labels(self):
+
+        # Explicit from field.
+        link = Link({
+            "field": "link",
+            "prefix": "https://example.com/",
+            "from": "id"
+        })
+
+        self.assertEqual(
+            link.emit(self.row),
+            "https://example.com/42"
+        )
+
+        # Select label
+        link = Link({
+            "field": "link",
+            "from": "label"
+        })
+
+        self.assertEqual(
+            link.emit(self.row),
+            "Golbat"
+        )
+
+        # Test exceptions on bad `from` field.
+        with self.assertRaises(RuntimeError):
+            link = Link({
+                "field": "link",
+                "prefix": "https://example.com/",
+                "from": "this_is_aninvalid_from_field"
+            })
 
     def test_make_map(self):
         """

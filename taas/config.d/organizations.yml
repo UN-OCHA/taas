@@ -1,0 +1,31 @@
+---
+sources:
+    organizations:
+        beta-v1:
+            url: https://docs.google.com/spreadsheets/d/1oa7Wknz64dMQlV2XsW0ssjh6Gw5SnHVfGxDSw_5eKOQ/edit#gid=518938746
+            mapping:
+                id: HR info ID
+                label: Preferred Term
+                acronym:
+                    type: map
+                    field: ACRONYM
+                    optional: True
+                homepage:
+                    type: map
+                    field: homepage
+                    optional: True
+                fts_id:
+                    type: map
+                    field: FinancialTrackingService ID
+                    optional: True
+
+                # This gives us a map with a machine-friendly URL,
+                # and a human-friendly ID.
+                type.id:
+                    type: link
+                    field: OrgTypeID - OrgTypePreferredTerm
+                    prefix: https://www.humanitarianresponse.info/en/api/v1.0/organization_types/
+                type.label:
+                    type: link
+                    field: OrgTypeID - OrgTypePreferredTerm
+                    from: label
