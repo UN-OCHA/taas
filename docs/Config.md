@@ -10,7 +10,7 @@ Our configuration is in [YAML](http://yaml.org/) format, and consists of a seque
 
 Each source can contain a number of exports, which would usually be version (`v1`, `v2`, etc), allowing for us to use the same data to generate different outputs. These directly translate to filenames on output.
 
-Each version has a human-friendly spreadsheet `url` (which we use to generate our own URL for data extraction in CSV), and a `mapping`, which describes how we map spreadsheet columns into JSON structions.
+Each version has a human-friendly spreadsheet `url` (which we use to generate our own URL for data extraction in CSV), and a `mapping`, which describes how we map spreadsheet columns into JSON structures.
 
 We'll cover the mapping in more detail momentarily, but it consists of JSON field names on the left, and Spreadsheet field names on the right. In the following config, we'd create a file named `beta-v1/function_roles.json` where each record has an `id` field and a `label` field, which came from the `ID` and `Preferred Term` columns in our spreadsheet.
 
@@ -25,7 +25,7 @@ sources:
                 label: Preferred Term
 ```
 
-The `url` field *must* contain a URL complete with the `gid=` parameter at the end. For spreadsheets that consist of multiple sheets, the gid prameter specifies the individual sheet to be read. The `/edit` part of the URL is optional. In almost all cases a simple copy-and-paste will work correctly.
+The `url` field *must* contain a URL complete with the `gid=` parameter at the end. For spreadsheets that consist of multiple sheets, the gid parameter specifies the individual sheet to be read. The `/edit` part of the URL is optional. In almost all cases a simple copy-and-paste will work correctly.
 
 A config file can contain multiple sources, and each source can contain multiple versions.
 
@@ -73,7 +73,7 @@ mapping:
 
 ### Complex mappings
 
-For anything more complex than a 1:1 mapping, we need to use a more complex configuration. Here each JSON output field is given a number of configuration paramters. For example:
+For anything more complex than a 1:1 mapping, we need to use a more complex configuration. Here each JSON output field is given a number of configuration parameters. For example:
 
 ```YAML
 mapping:
