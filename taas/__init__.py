@@ -346,13 +346,16 @@ def process_source(source_name, source):
     # TODO: We should have a service class definition, rather than trusting our
     #       config file is in the right format.
 
-    for version in source:
-        options = source[version]
+    for version, version_config in source.iteritems():
 
-        (key, gid) = compute_key_gid(source_name, options)
+        # Skip our options block
+        if version == 'options':
+            continue
+
+        (key, gid) = compute_key_gid(source_name, version_config)
 
         google_sheet_to_json(
-            source_name, version, key, gid, options['mapping']
+            source_name, version, key, gid, version_config['mapping']
         )
 
 
@@ -362,8 +365,14 @@ def process_sources(config, sources=None):
 
         Process all sources if none are provided.
     """
+
+    # If there are no sources, we build everything that doesn't have
+    # `build_by_default` set to False
     if sources is None:
-        sources = config['sources']
+        sources = []
+        for source, src_config in config['sources'].iteritems():
+            if src_config.get('options', {}).get('build_by_default', True):
+                sources.append(source)
 
     for source in sources:
         if source not in config['sources']:
