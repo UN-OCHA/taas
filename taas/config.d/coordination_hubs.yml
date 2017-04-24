@@ -64,10 +64,4 @@ sources:
                     optional: True
                     from: label
 
-                # Our links are always just our HR.info ID with a prefix.
-                hrinfo_link:
-                    type: concat
-                    field: HR.info ID
-                    prefix: https://humanitarianresponse.info/node/
-
                 type: Type
