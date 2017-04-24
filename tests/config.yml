@@ -13,3 +13,4 @@ sources:
                 name.en: English Name
                 name.jp: Japanese Name
                 type: Type
+                characteristic.weight.kg: Weight (kg)

@@ -175,6 +175,41 @@ def save_google_sheet(name, key, gid, file_format="csv", directory=None):
     urllib.urlretrieve(url, filename)
 
 
+def insert_nested_value(dictionary, path, value):
+    """
+        Given a `dictionary`, walks the `path` (creating sub-dicts as needed) and inserts
+        the `value` at the bottom.
+
+        Modifies `dictionary`, and also returns `dictionary` as a convenience.
+
+        For example:
+
+        >>> insert_nested_value({}, ['foo', 'bar'], 'baz')
+        {"foo": {"bar": "baz"}}
+    """
+
+    # This is a pointer into our data structure allowing us to walk
+    # down levels.
+    breadcrumb = dictionary
+
+    while path:
+        # Remove the head of our list
+        key = path.pop(0)
+
+        # If our path is now empty, we've reached the end.
+        if not path:
+            breadcrumb[key] = value
+
+        # Otherwise, we need to dig deeper, adding a layer of dict
+        # if not already there.
+        else:
+            if key not in breadcrumb:
+                breadcrumb[key] = {}
+            breadcrumb = breadcrumb[key]
+
+    return dictionary
+
+
 def normalise_sheet(raw, mapping):
     """
         Converts data from the form found in .csv files to that which will be served by
@@ -185,32 +220,27 @@ def normalise_sheet(raw, mapping):
 
         Fields containing a . in their name will be turned into maps. Eg:
         `label.en`, `label.es` and `label.fr` become three keys in the `label` map.
-        Only one level of embedding is supported.
     """
 
+    # Turn our configuration into mapping processors that can transform data
     fieldmap = make_map(mapping)
 
+    # This will be our complete set of all processed roles
     cooked = []
 
     for row in raw:
         cooked_row = {}
         for label, processor in fieldmap.items():
+            # Get the processed value for this field
             result = processor.emit(row)
 
-            if '.' in label:
-                # TODO: Would be nice to support any number of fields
-                # TODO: Refactor this into a separate, testable function.
-                keys = label.split('.', 1)
-                topkey = keys[0]
-                subkey = keys[1]
+            # Split address.country.id style nested keys!
+            path = label.split('.')
 
-                if topkey not in cooked_row:
-                    cooked_row[topkey] = {}
+            # Insert into our data structure
+            insert_nested_value(cooked_row, path, result)
 
-                cooked_row[topkey][subkey] = result
-            else:
-                cooked_row[label] = result
-
+        # Finally, append our processed row to the set of all rows
         cooked.append(cooked_row)
 
     return cooked

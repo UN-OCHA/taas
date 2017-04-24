@@ -27,6 +27,7 @@ class TestTaas(unittest.TestCase):
         self.assertEqual(bulbasaur['id'], '1')
         self.assertEqual(bulbasaur['name']['en'], 'Bulbasaur')
         self.assertEqual(bulbasaur['name']['jp'], 'フシギソウ')
+        self.assertEqual(bulbasaur['characteristic']['weight']['kg'], '6.9')
         self.assertEqual(bulbasaur['type'], 'grass')
 
     def clear_env(self):
