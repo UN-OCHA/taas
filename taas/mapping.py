@@ -136,8 +136,15 @@ class Link(Concat):
         if raw is None:
             return None
 
-        # Then split on a literal ' - '
-        ident, label = raw.split(' - ', 1)
+        ident, label = None, None
+
+        try:
+            # Then split on a literal ' - '
+            ident, label = raw.split(' - ', 1)
+        except ValueError:
+            raise ValueError("Link field {} cannot find link string ' - ' in value {}".format(
+                self.field, raw
+            ))
 
         # And pass up to our parent class, so it can concat and adjust
         # to taste.
