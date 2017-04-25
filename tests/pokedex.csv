@@ -1,5 +1,5 @@
-Pokedex ID,English Name,Japanese Name,Type
-1,Bulbasaur,フシギソウ,grass
-2,Ivysaur,フシギギソウ,grass
-3,Venusaur,フシギバナ,grass
-4,Charmander,ヒトカゲ,fire
+Pokedex ID,English Name,Japanese Name,Type,Weight (kg)
+1,Bulbasaur,フシギソウ,grass,6.9
+2,Ivysaur,フシギギソウ,grass,13.0
+3,Venusaur,フシギバナ,grass,100.0
+4,Charmander,ヒトカゲ,fire,8.5
