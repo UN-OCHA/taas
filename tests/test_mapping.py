@@ -119,6 +119,10 @@ class TestMapping(unittest.TestCase):
         with self.assertRaises(ValueError):
             link.emit({"link": ""})
 
+        # Ditto if it's malformed
+        with self.assertRaises(ValueError):
+            link.emit({"link": "A Missing Link"})
+
         # Here comes and optional link. It shouldn't throw.
         optional_link = Link({
             "field": "link",
