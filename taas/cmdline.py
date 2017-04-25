@@ -80,12 +80,13 @@ def gss2json():
         description='''
             Processes Google spreadsheet(s) to JSON.
 
-            If no arguments are given, all sheets will be processed.
+            If no arguments are given, or --all is set, all sheets will be processed.
         '''
     )
 
     parser.add_argument('--config', metavar="FILE", help="Config file to use.")
     parser.add_argument('--push', action='store_true', help="Push the changes to github")
+    parser.add_argument('--all', action='store_true', help="Build all available sheets")
 
     parser.add_argument(
         'sheets',
@@ -100,9 +101,9 @@ def gss2json():
     config = taas.read_config(args.config)
 
     # Sheets always comes back as a list. We flip it explicitly to
-    # a None value if it's empty.
+    # a None value if it's empty, or if --all is set
     sheets = args.sheets
-    if not sheets:
+    if args.all or not sheets:
         sheets = None
 
     # If we're pushing to github, make sure we've got everything we need first.
