@@ -1,6 +1,8 @@
 ---
 sources:
     organizations:
+        options:
+            build_by_default: False
         beta-v1:
             url: https://docs.google.com/spreadsheets/d/1oa7Wknz64dMQlV2XsW0ssjh6Gw5SnHVfGxDSw_5eKOQ/edit#gid=518938746
             mapping:

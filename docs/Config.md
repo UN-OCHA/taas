@@ -29,6 +29,27 @@ The `url` field *must* contain a URL complete with the `gid=` parameter at the e
 
 A config file can contain multiple sources, and each source can contain multiple versions.
 
+## Options block
+
+Each source may have an optional `options` block, which changes how the source is processed.
+
+The only valid option at this time is the `build_by_default`, which defaults to `True`. This can be set to `False` to disable the export of this entire taxonomy. In this case the source can still be exported explicitly with `gss2json <source-name>`.
+
+The following example defines a `functional_roles` export, but not one that will be built by default.
+
+```YAML
+---
+sources:
+    functional_roles:
+        options:
+            build_by_default: False
+        beta-v1:
+            url: https://docs.google.com/spreadsheets/d/1c9wehuauQAAegElIRI6vhWktKSI-PcPjHHiXdqASonk/edit#gid=0
+            mapping:
+                id: ID
+                label: Preferred Term
+```
+
 ## Output keys
 
 Output fields are generated exactly presented in the configuration file, with one exception. If the field contains a period (`.`) then it will be transformed into a JSON map. For example:
