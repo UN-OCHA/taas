@@ -44,11 +44,11 @@ sources:
 
                 # TODO: Phones should be split into a list.
                 x-phones:
-                    field: Phones
+                    field: Generic Phone Number for site
                     optional: True
 
                 email:
-                    field: Email
+                    field: Generic Email for site
                     optional: True
 
                 # TODO: Link these to our own data when that's published.
@@ -63,5 +63,3 @@ sources:
                     field: Organization
                     optional: True
                     from: label
-
-                type: Type
