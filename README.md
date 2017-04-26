@@ -10,6 +10,12 @@
 This code that powers the UN Office for the Coordination of Humanitarian Affairs (UN-OCHA)
 Taxnonomy as a Service APIs.
 
+## OSX requirements
+
+* pip: `sudo easy_install pip`
+
+* virtualenv: `pip install virtualenv`
+
 ## Building the code
 
 The easy way:
@@ -21,6 +27,8 @@ The easy way:
 Activate the virtual environment:
 
     $ . env/bin/activate
+
+On OSX do `. venv/bin/activate` instead.
 
 Fetch updates with `gss2json`. Make sure you have the `UN-OCHA/taas-data` directory checked
 out the same level as `taas`, or set your `TAAS_DATA` environment variable first.
