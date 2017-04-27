@@ -16,37 +16,55 @@ sources:
                 ocha_gms_id:
                     field: OCHA_GMS ID
                     optional: True
-                label: Preferred Term
-                alt_label.default:
+                label.default: Preferred Term
+                label.alt:
                     field: Alt Term
                     optional: True
-                alt_label.hrinfo:
-                    field: HRinfo Alt Term
-                    optional: True
-                alt_label.gms:
-                    field: GMS Alt Term
-                    optional: True
-                alt_label.rw:
-                    field: RW Alt Term
-                    optional: True
-                alt_label.fts:
-                    field: FTS Alt Term
-                    optional: True
+                label.humanitarianresponse:
+                    field:
+                        - HRinfo Alt Term
+                        - Preferred Term
+                label.gms:
+                    field:
+                        - GMS Alt Term
+                        - Preferred Term
+                label.reliefweb:
+                    field:
+                        - RW Alt Term
+                        - Preferred Term
+                label.fts:
+                    field:
+                        - FTS Alt Term
+                        - Preferred Term
                 url:
                     field: URL
                     optional: True
                 acronym:
                     field: Acronymn
                     optional: True
-                type.default:
+                type.default.id:
+                    type: link
                     field: Organization Type
+                    prefix: https://www.humanitarianresponse.info/en/api/v1.0/organization_types/
                     optional: True
-                type.rw:
+                type.default.label:
+                    type: link
+                    field: Organization Type
+                    from: label
+                    optional: True
+                type.reliefweb:
                     field: RW Type
                     optional: True
-                based_in:
+                based_in.country.id:
+                    type: link
                     field: Based in
                     optional: True
+                    prefix: http://vocabulary.unocha.org/json/beta-v1/countries/
+                based_in.country.label:
+                    type: link
+                    field: Based in
+                    optional: True
+                    from: label
                 scope:
                     field: Scope
                     optional: True
