@@ -4,30 +4,67 @@ sources:
         options:
             build_by_default: False
         beta-v1:
-            url: https://docs.google.com/spreadsheets/d/1oa7Wknz64dMQlV2XsW0ssjh6Gw5SnHVfGxDSw_5eKOQ/edit#gid=518938746
+            url: https://docs.google.com/spreadsheets/d/1GIA3FrRM1GZS3FoUDNpw35MhC_WLTdKBiiU2tUlWS84/edit#gid=0
             mapping:
-                id: HR info ID
-                label: Preferred Term
+                id: ID
+                hrinfo_id:
+                    field: HRinfo ID
+                    optional: True
+                rw_id:
+                    field: RW ID
+                    optional: True
+                ocha_gms_id:
+                    field: OCHA_GMS ID
+                    optional: True
+                label.default: Preferred Term
+                label.humanitarianresponse:
+                    field:
+                        - HRinfo Alt Term
+                        - Preferred Term
+                label.gms:
+                    field:
+                        - GMS Alt Term
+                        - Preferred Term
+                label.reliefweb:
+                    field:
+                        - RW Alt Term
+                        - Preferred Term
+                label.fts:
+                    field:
+                        - FTS Alt Term
+                        - Preferred Term
+                used_for:
+                    field: Used For
+                    optional: True
+                url:
+                    field: URL
+                    optional: True
                 acronym:
-                    type: map
-                    field: ACRONYM
+                    field: Acronymn
                     optional: True
-                homepage:
-                    type: map
-                    field: homepage
-                    optional: True
-                fts_id:
-                    type: map
-                    field: FinancialTrackingService ID
-                    optional: True
-
-                # This gives us a map with a machine-friendly URL,
-                # and a human-friendly ID.
-                type.id:
+                type.default.id:
                     type: link
-                    field: OrgTypeID - OrgTypePreferredTerm
+                    field: Organization Type
                     prefix: https://www.humanitarianresponse.info/en/api/v1.0/organization_types/
-                type.label:
+                    optional: True
+                type.default.label:
                     type: link
-                    field: OrgTypeID - OrgTypePreferredTerm
+                    field: Organization Type
                     from: label
+                    optional: True
+                type.reliefweb:
+                    field: RW Type
+                    optional: True
+                based_in.country.id:
+                    type: link
+                    field: Based in
+                    optional: True
+                    prefix: http://vocabulary.unocha.org/json/beta-v1/countries/
+                based_in.country.label:
+                    type: link
+                    field: Based in
+                    optional: True
+                    from: label
+                scope:
+                    field: Scope
+                    optional: True
