@@ -246,12 +246,25 @@ def normalise_sheet(raw, mapping):
     return cooked
 
 
-def save_json(name, version, data, directory=None):
+def write_json_file(filename, data):
+    """
+        A convenience method to write JSON using pretty formatting options.
+    """
+    with open(filename, 'w') as jsonfile:
+        json.dump(data, jsonfile, indent=4, sort_keys=True)
+
+
+def save_json(name, version, data, directory=None, version_config=None):
     """
         Saves `data` as JSON into "directory/version/name.json".
         If no directory is specified, json_root() will be used.
 
         Creates the directory if it does not already exist.
+
+        If passed `version_config`, and if that contains a `fragment_key`,
+        we will also create fragments in the form "name/fragment_key".
+        (For example `countries/42`). This allows us to act as a poor API
+        interface, letting individual records be addressed by URL or filename.
     """
 
     if directory is None:
@@ -264,13 +277,48 @@ def save_json(name, version, data, directory=None):
     if not os.path.isdir(directory):
         os.makedirs(directory)
 
-    # Final file location
+    # Final file location and fragment path
+    fragment_path = os.path.join(directory, name)
     path = os.path.join(directory, "{}.json".format(name))
 
     debug("Writing to {}\n".format(path))
+    write_json_file(path, data)
 
-    with open(path, "w") as jsonfile:
-        json.dump(data, jsonfile, indent=4, sort_keys=True)
+    # We pass data['data'] since we know our actual results are wrapped
+    # by this time.
+    maybe_save_fragments(fragment_path, data['data'], version_config)
+
+
+def maybe_save_fragments(fragment_path, data, version_config):
+    """
+        Saves fragments to fragment_path if `fragment_key` is set
+        in the configuration. Otherwise does nothing.
+
+        Creates the `fragment_path` directory if required.
+    """
+    if version_config is None:
+        return
+
+    fragment_key = version_config.get('fragment_key', None)
+
+    if fragment_key is None:
+        return
+
+    # Make our fragment directory if not already there
+    if not os.path.isdir(fragment_path):
+        os.makedirs(fragment_path)
+
+    # Export all our records
+    for fragment in data:
+        key = fragment[fragment_key]
+        filename = os.path.join(fragment_path, key)
+
+        # By decorating an array consisting of just our fragment, we have
+        # it match the format used by the main data export. This also matches
+        # the existing HR.info APIs
+        decorated_fragment = add_metadata([fragment])
+
+        write_json_file(filename, decorated_fragment)
 
 
 def add_metadata(data):
@@ -348,7 +396,7 @@ def compute_key_gid(source_name, options):
     return (key, gid)
 
 
-def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
+def google_sheet_to_json(name, version, key, gid, version_config, directory=None):
     """
         Does the entire process of downloading a google sheet, mapping
         the fields, and saving it as JSON.
@@ -360,8 +408,8 @@ def google_sheet_to_json(name, version, key, gid, mapping, directory=None):
         directory = sheets_root()
 
     save_google_sheet(name, key, gid)
-    to_jsonify = process_csv(name, mapping, directory)
-    save_json(name, version, to_jsonify)
+    to_jsonify = process_csv(name, version_config['mapping'], directory)
+    save_json(name, version, to_jsonify, version_config=version_config)
 
 
 def process_source(source_name, source):
@@ -385,7 +433,7 @@ def process_source(source_name, source):
         (key, gid) = compute_key_gid(source_name, version_config)
 
         google_sheet_to_json(
-            source_name, version, key, gid, version_config['mapping']
+            source_name, version, key, gid, version_config
         )
 
 
