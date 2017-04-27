@@ -3,6 +3,7 @@ sources:
     countries:
         beta-v1:
             url: https://docs.google.com/spreadsheets/d/1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY/edit#gid=1528390745
+            fragment_key: id
             mapping:
                 id: ID
 
