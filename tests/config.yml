@@ -8,6 +8,7 @@ sources:
         v1:
             key: None
             gid: 0
+            fragment_key: id
             mapping:
                 id: Pokedex ID
                 name.en: English Name
