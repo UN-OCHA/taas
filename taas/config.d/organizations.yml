@@ -17,9 +17,6 @@ sources:
                     field: OCHA_GMS ID
                     optional: True
                 label.default: Preferred Term
-                label.alt:
-                    field: Alt Term
-                    optional: True
                 label.humanitarianresponse:
                     field:
                         - HRinfo Alt Term
@@ -36,6 +33,9 @@ sources:
                     field:
                         - FTS Alt Term
                         - Preferred Term
+                used_for:
+                    field: Used For
+                    optional: True
                 url:
                     field: URL
                     optional: True
