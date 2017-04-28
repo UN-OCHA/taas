@@ -58,29 +58,24 @@ sources:
                 label.default: Preferred Term
 
                 label.humanitarianresponse:
-                    field:
-                        - HRinfo Alt Term
-                        - Preferred Term
+                    field: HRinfo Alt Term
+                    optional: True
 
                 label.reliefweb-short:
-                    field:
-                        - RW Short Name
-                        - Preferred Term
+                    field: RW Short Name
+                    optional: True
 
                 label.reliefweb-api:
-                    field:
-                        - RW API Alt Term
-                        - Preferred Term
+                    field: RW API Alt Term
+                    optional: True
 
                 label.m49:
-                    field:
-                        - m49 Alt Term
-                        - Preferred Term
+                    field: m49 Alt Term
+                    optional: True
 
                 label.fts:
-                    field:
-                        - FTS Alt Term
-                        - Preferred Term
+                    field: FTS Alt Term
+                    optional: True
 
                 # Lat/Long are presented the same way as they
                 # are in HRinfo
