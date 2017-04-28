@@ -454,16 +454,26 @@ def process_sources(config, sources=None):
         Process all sources if none are provided.
     """
 
-    # If there are no sources, we build everything that doesn't have
-    # `build_by_default` set to False
     if sources is None:
-        sources = []
-        for source, src_config in config['sources'].iteritems():
-            if src_config.get('options', {}).get('build_by_default', True):
-                sources.append(source)
+        sources = get_default_sources(config)
 
     for source in sources:
         if source not in config['sources']:
             raise KeyError("Asked to process source '{}', but not found in config.".format(source))
 
         process_source(source, config['sources'][source])
+
+
+def get_default_sources(config):
+    """
+        Returns the default sources in a config. This is all sources that
+        do not have `built_by_default` set to false.
+    """
+
+    sources = []
+
+    for source, src_config in config['sources'].iteritems():
+        if src_config.get('options', {}).get('build_by_default', True):
+            sources.append(source)
+
+    return sources
