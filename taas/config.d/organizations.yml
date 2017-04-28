@@ -18,21 +18,17 @@ sources:
                     optional: True
                 label.default: Preferred Term
                 label.humanitarianresponse:
-                    field:
-                        - HRinfo Alt Term
-                        - Preferred Term
+                    field: HRinfo Alt Term
+                    optional: True
                 label.gms:
-                    field:
-                        - GMS Alt Term
-                        - Preferred Term
+                    field: GMS Alt Term
+                    optional: True
                 label.reliefweb:
-                    field:
-                        - RW Alt Term
-                        - Preferred Term
+                    field: RW Alt Term
+                    optional: True
                 label.fts:
-                    field:
-                        - FTS Alt Term
-                        - Preferred Term
+                    field: FTS Alt Term
+                    optional: True
                 used_for:
                     field: Used For
                     optional: True
