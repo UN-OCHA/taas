@@ -119,6 +119,16 @@ def read_config(path=None):
 
     # If we're here, we have a directory. (Or we're about
     # to throw an exception, because we don't.)
+
+    return get_directory_config(path)
+
+
+def get_directory_config(path):
+    """
+        Takes a directory containing `.yml` files, and returns a configuration
+        by merging them all together.
+    """
+
     config = {}
     for file in glob.glob(os.path.join(path, "*.yml")):
         with open(file) as stream:
