@@ -77,6 +77,34 @@ sources:
                     field: FTS Alt Term
                     optional: True
 
+                label.iso:
+                    field: ISO Alt Term
+                    optional: True
+
+                label.unterm:
+                    field: UNTERM Alt Term
+                    optional: True
+
+                label.french-short:
+                    field: French Short
+                    optional: True
+
+                label.spanish-short:
+                    field: Spanish Short
+                    optional: True
+
+                label.russian-short:
+                    field: Russian Short
+                    optional: True
+
+                label.chinese-short:
+                    field: Chinese Short
+                    optional: True
+
+                label.arabic-short:
+                    field: Arabic Short
+                    optional: True
+
                 # Lat/Long are presented the same way as they
                 # are in HRinfo
 
@@ -86,4 +114,12 @@ sources:
 
                 geolocation.lon:
                     field: Longitude
+                    optional: True
+
+                unterm-list:
+                    field: Appears in UNTERM list
+                    optional: True
+
+                dgacm-list:
+                    field: Appears in DGACM list
                     optional: True
