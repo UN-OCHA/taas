@@ -9,3 +9,13 @@ sources:
                 acronym: ACRONYM
                 group_type: Group Type
                 homepage: Homepage
+        beta-v2:
+            url: https://docs.google.com/spreadsheets/d/1SxSircxhXMZCe0PWafCht-whjBdI9UqoeFeSUbiLGc4/edit#gid=0
+            mapping:
+                id: HRinfo ID
+                label.default: Preferred Term
+                label.english: Preferred Term
+                label.french: Preferred Term (fr)
+                acronym: ACRONYM
+                group_type: Group Type
+                homepage: Homepage
