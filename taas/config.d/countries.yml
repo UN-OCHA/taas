@@ -268,7 +268,7 @@ sources:
                     field: Intermediate Region Code
                     optional: True
 
-                itermediate-region.label.default:
+                intermediate-region.label.default:
                     field: Intermediate Region Name
                     optional: True
 
