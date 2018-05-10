@@ -275,5 +275,3 @@ sources:
                 regex:
                     field: Regex
                     optional: True
-
-                
