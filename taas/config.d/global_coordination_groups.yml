@@ -16,9 +16,9 @@ sources:
                 label.i-default: Preferred Term
                 label.en: Preferred Term
                 label.fr:
-                        type: map
-                        field: Preferred Term (fr)
-                        optional: True
+                    type: map
+                    field: Preferred Term (fr)
+                    optional: True
                 acronym: ACRONYM
                 group_type: Group Type
                 homepage: Homepage
