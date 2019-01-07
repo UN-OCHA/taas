@@ -6,7 +6,7 @@ codeclimate-test-reporter==0.2.1
 coverage==4.0.3
 cryptography==1.7.2
 enum34==1.1.6
-Flask==0.12
+Flask>=0.12.3
 future==0.15.2
 idna==2.4
 ipaddress==1.0.18
@@ -19,13 +19,13 @@ pep8==1.7.0
 py==1.4.32
 pyasn1==0.2.3
 pycparser==2.17
-pyOpenSSL==16.2.0
+pyOpenSSL>=17.5.0
 pyparsing==2.2.0
 pytest==3.0.6
 pytest-cov==2.4.0
 python-coveralls==2.9.0
 PyYAML==3.12
-requests==2.13.0
+requests>=2.20.0
 six==1.10.0
 Werkzeug==0.11.15
 yamllint==1.6.1
