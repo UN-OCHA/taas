@@ -8,7 +8,7 @@
 [![Image Layers](https://images.microbadger.com/badges/image/unocha/taas.svg)](https://microbadger.com/images/unocha/taas)
 
 This code that powers the UN Office for the Coordination of Humanitarian Affairs (UN-OCHA)
-Taxnonomy as a Service APIs.
+Taxonomy as a Service APIs.
 
 ## Requirements
 
