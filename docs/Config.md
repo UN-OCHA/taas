@@ -30,6 +30,8 @@ sources:
 
 The `url` field *must* contain a URL complete with the `gid=` parameter at the end. For spreadsheets that consist of multiple sheets, the gid parameter specifies the individual sheet to be read. The `/edit` part of the URL is optional. In almost all cases a simple copy-and-paste will work correctly.
 
+Permissions on the spreadsheet must allow 'Anyone with the link' to view it.
+
 A source *may* contain a `fragment_key`. If set, JSON fragments (individual files containing only a single record each) will be emitted in addition to the main file, using the contents of the mapping field specified. For example, if we're using numeric IDs, the example above would create files named `beta-v1/functional_roles/1`, `beta-v1/function_roles/2`, etc.
 
 To match how existing APIs present their records, fragments do not have the `.json` or any other extension.

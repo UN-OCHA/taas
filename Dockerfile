@@ -1,4 +1,4 @@
-FROM unocha/alpine-base-s6-python2:latest
+FROM unocha/alpine-base-s6-python2:3.8
 
 MAINTAINER Paul Fenwick "paul@humanitarianresponse.info"
 
@@ -16,11 +16,9 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.vcs-url=$VCS_URL \
       org.label-schema.vcs-ref=$VCS_REF
 
-# Git is everyone's favourite source control manager
-# Hub actually lets us make PRs to github
 # openssh is the transport needed to make PRs to github
 RUN apk add --update --no-cache \
-      git hub openssh \
+      git openssh \
       make \
       py-virtualenv \
       # These are needed so python can build its things.
