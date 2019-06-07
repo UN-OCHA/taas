@@ -1,0 +1,15 @@
+---
+sources:
+    ocha_services:
+        options:
+            build_by_default: True
+        beta-v1:
+            url: https://docs.google.com/spreadsheets/d/13SHu0DCZhXec6UskKDUUSCc35JPcRk5L9iJT2WuQRfk/edit#gid=1170456449
+            # Mapping of column names -> API fields
+            mapping:
+                id: ID
+                label: Name
+                url: URL
+                acronym:
+                    field: Acronym
+                    optional: True
