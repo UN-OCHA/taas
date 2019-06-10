@@ -17,10 +17,10 @@ sources:
 
                 "@context":
                     type: literal
-                    value: http://vocabulary.unocha.org/json/beta-v1/functional_roles.jsonld
+                    value: https://vocabulary.unocha.org/json/beta-v1/functional_roles.jsonld
                 "@id":
                     type: concat
-                    prefix: http://vocabulary.unocha.org/json/beta-v1/functional_roles/
+                    prefix: https://vocabulary.unocha.org/json/beta-v1/functional_roles/
                     field: ID
 
                 scope: Scope
