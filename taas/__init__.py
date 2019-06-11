@@ -115,7 +115,7 @@ def read_config(path=None):
 
     if os.path.isfile(path):
         with open(path) as stream:
-            return yaml.load(stream)
+            return yaml.safe_load(stream)
 
     # If we're here, we have a directory. (Or we're about
     # to throw an exception, because we don't.)
@@ -132,7 +132,7 @@ def get_directory_config(path):
     config = {}
     for file in glob.glob(os.path.join(path, "*.yml")):
         with open(file) as stream:
-            sub_config = yaml.load(stream)
+            sub_config = yaml.safe_load(stream)
             config = _merge_config(sub_config, config)
 
     return config

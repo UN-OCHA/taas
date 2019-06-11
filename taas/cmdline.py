@@ -69,9 +69,6 @@ def push_to_github(label):
 
     run(["git", "push", "--set-upstream", "origin", branch_name])
 
-    # NB: `hub` is available from github
-    run(["hub", "pull-request", "-m", "Automated update: "+label])
-
 
 def gss2json():
     """Console script for processing google spreadsheet(s) to JSON."""
