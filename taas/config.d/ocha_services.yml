@@ -4,7 +4,7 @@ sources:
         options:
             build_by_default: True
         beta-v1:
-            url: https://docs.google.com/spreadsheets/d/13SHu0DCZhXec6UskKDUUSCc35JPcRk5L9iJT2WuQRfk/edit#gid=1170456449
+            url: https://docs.google.com/spreadsheets/d/1DYclP1DfBN08vXoEQYK7J2Oo8MxllKTWjXBU-LHkeXE/edit#gid=856823080
             # Mapping of column names -> API fields
             mapping:
                 id: ID
