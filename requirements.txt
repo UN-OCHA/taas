@@ -3,11 +3,11 @@ backports.tempfile==1.0rc1
 cffi==1.12.3
 click==6.7
 coverage==4.0.3
-cryptography==1.7.2
+cryptography==2.3.1
 enum34==1.1.6
 Flask>=0.12.3
 future==0.15.2
-idna==2.4
+idna==2.8
 ipaddress==1.0.18
 itsdangerous==0.24
 Jinja2>=2.10.1
@@ -26,6 +26,6 @@ python-coveralls==2.9.0
 PyYAML>=4.2b1
 requests>=2.20.0
 six==1.10.0
-Werkzeug==0.11.15
+Werkzeug==0.15.4
 xenon>=0.5.5
 yamllint==1.6.1
