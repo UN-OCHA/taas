@@ -4,7 +4,7 @@ import glob
 import os
 import re
 import sys
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import yaml
 
 from collections import namedtuple
@@ -87,7 +87,7 @@ def _merge_config(new, base):
 
     # If we've got two dicts, merge them.
     if isinstance(new, dict) and isinstance(base, dict):
-        for k, v in base.iteritems():
+        for k, v in base.items():
             if k not in new:
                 new[k] = v
             else:
@@ -182,7 +182,7 @@ def save_google_sheet(name, key, gid, file_format="csv", directory=None):
     debug("Saving {} to {}\n".format(url, filename))
 
     # TODO: How does urllib handle errors? Can we trust it to throw on failure?
-    urllib.urlretrieve(url, filename)
+    urllib.request.urlretrieve(url, filename)
 
 
 def insert_nested_value(dictionary, path, value):
@@ -240,7 +240,7 @@ def normalise_sheet(raw, mapping):
 
     for row in raw:
         cooked_row = {}
-        for label, processor in fieldmap.items():
+        for label, processor in list(fieldmap.items()):
             # Get the processed value for this field
             result = processor.emit(row)
 
@@ -434,7 +434,7 @@ def process_source(source_name, source):
     # TODO: We should have a service class definition, rather than trusting our
     #       config file is in the right format.
 
-    for version, version_config in source.iteritems():
+    for version, version_config in source.items():
 
         # Skip our options block
         if version == 'options':
@@ -472,7 +472,7 @@ def get_default_sources(config):
 
     sources = []
 
-    for source, src_config in config['sources'].iteritems():
+    for source, src_config in config['sources'].items():
         if src_config.get('options', {}).get('build_by_default', True):
             sources.append(source)
 

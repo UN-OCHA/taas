@@ -1,4 +1,4 @@
-FROM unocha/alpine-base-s6-python2:3.8
+FROM unocha/alpine-base-s6-python3:3.8
 
 MAINTAINER Paul Fenwick "paul@humanitarianresponse.info"
 
@@ -23,7 +23,7 @@ RUN apk add --update --no-cache \
       py-virtualenv \
       # These are needed so python can build its things.
       gcc \
-      python-dev \
+      python3-dev \
       musl-dev \
       linux-headers \
       libffi-dev \

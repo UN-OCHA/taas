@@ -14,7 +14,7 @@ GIT=git
 SED=sed
 
 venv: requirements.txt
-	virtualenv --system-site-packages venv
+	virtualenv --python=python3.6 --system-site-packages venv
 	venv/bin/pip install --upgrade pip
 	venv/bin/pip install --upgrade appdirs
 	venv/bin/pip install --upgrade --editable .
@@ -28,7 +28,6 @@ test: venv FORCE
 # Reports tests to our CI providers and friends
 test-report: test FORCE
 	venv/bin/coveralls
-	venv/bin/codeclimate-test-reporter
 
 update:	venv FORCE
 	venv/bin/gss2json --push

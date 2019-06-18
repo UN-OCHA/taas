@@ -14,7 +14,7 @@ def run(cmdlist):
         change how we run things in the future, we can do so.
     """
 
-    print "$ {}\n".format(" ".join(cmdlist))
+    print("$ {}\n".format(" ".join(cmdlist)))
     subprocess.check_call(cmdlist)
 
 
