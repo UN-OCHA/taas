@@ -103,7 +103,7 @@ class TestTaas(unittest.TestCase):
                 "MySource", {"key": "foo", "gid": 0, "url": "http://example.com/"}
             )
 
-        self.assertRegex(ex.exception.message, "MySource")
+        self.assertRegex(ex.exception.args[0], "MySource")
 
     def test_fragments(self):
         config = taas.read_config(self.test_config)
