@@ -27,4 +27,5 @@ PyYAML>=4.2b1
 requests>=2.20.0
 six==1.10.0
 Werkzeug==0.15.4
+xenon>=0.5.5
 yamllint==1.6.1

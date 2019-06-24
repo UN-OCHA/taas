@@ -9,6 +9,7 @@ install:
 
 script:
   - make test
+  - xenon -bB -mA -aA
 
 after_success:
   - make test-report
