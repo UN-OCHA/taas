@@ -21,7 +21,9 @@ sources:
                     optional: True
 
                 address.premise:
-                    field: Address (free text to include building name/number, street & Postcode)
+                    field: >
+                      Address (free text to include building name/number,
+                      street & Postcode)
                     optional: True
 
                 address.locality:

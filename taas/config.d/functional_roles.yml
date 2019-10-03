@@ -12,8 +12,8 @@ sources:
                 # Our numeric ID
                 id: ID
 
-                # Our rich JSON-LD data. Ideally context would be a top-level field, as opposed
-                # to being attached to each element.
+                # Our rich JSON-LD data. Ideally context would be a top-level
+                # field, as opposed to being attached to each element.
 
                 "@context":
                     type: literal

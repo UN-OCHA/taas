@@ -1,9 +1,8 @@
 appdirs>=1.4.2
 backports.tempfile==1.0rc1
-cffi==1.9.1
+cffi==1.12.3
 click==6.7
-codeclimate-test-reporter==0.2.1
-coverage==4.0.3
+coverage==4.5.3
 cryptography==2.3.1
 enum34==1.1.6
 Flask>=0.12.3
@@ -24,7 +23,7 @@ pyparsing==2.2.0
 pytest==3.0.6
 pytest-cov==2.4.0
 python-coveralls==2.9.0
-PyYAML>=4.2b1
+PyYAML<5.0,>=4.2b1
 requests>=2.20.0
 six==1.10.0
 Werkzeug==0.15.4

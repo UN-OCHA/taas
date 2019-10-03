@@ -2,12 +2,7 @@
 language: python
 
 python:
-  - 2.7
-
-# The secure section is our CODECLIMATE_REPO_TOKEN, which is modestly private.
-env:
-  - secure: >
-      wxCU9KU/XefZL9TjWXz4F+ukgYlFRKzsuK8IwVUJODQIDLraQ0OMVOd2K/1XUuM1x0/aqWqC0/NVK+8z9rTaqwy8lU1BGK51qJl/BhWBz2nDgs+0wFq5EJXpR3MG0uSVVby7K8UySNQFRMbsnPdN1AER4lknAvrbVik2pEesGfsR3YGIe+2IeYA2Skn7yQfnZj+GBRl2i6jcDoZeTOY6oTAEt2py5YHpV6GPMpuvjsqVtJ317zkmQlItvMnMoh8xKJwa31fn29305XcAMqOwpowjfknUfhV2UPWtcwIN06osUb5h9GEu/+h8hvGkbYtFUNJjMtylyvjNDqDnvBmoYek25MjMdj+GDzyjn4O4aLlhU3NN2eM9eNJ0UT3bwG/jdLl9xqNjQ07YVUkLEDIgDHfe4RmONgNUHtzj4kwWW9zs7AHHlEeAJsFj2pXVTxyyp68TNY+rl1Fyh96x4UQqi9DRaFOV2EXjjMiEY8tFljOwjJYg0JxpZUc8iIiTWxbh8d54t8l6gPEiM+q3zJqAkQFw78AJ+DWNvbAvTF6YQ7fv5lnjZZ43JEsQJRBYzb4ZMwkaLWOWPf/ocSu7N3E1W+MRgizW1l8ErF64t6Qeh+ifKogcGSplBnDSNhFZ1vSXjejNzNSXs4jGSC26W6EsMizB8pHPWfp9gBDpMeugSFM=
+  - 3.6
 
 install:
   - make

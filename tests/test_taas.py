@@ -49,7 +49,7 @@ class TestTaas(unittest.TestCase):
     def test_read_config_d(self):
         config = taas.read_config(self.test_config_d)
 
-        print config
+        print(config)
 
         self.assertEqual(config['food']['vegemite']['type'], 'breakfast spread')
         self.assertEqual(config['food']['durian']['type'], 'fruit')
@@ -103,7 +103,7 @@ class TestTaas(unittest.TestCase):
                 "MySource", {"key": "foo", "gid": 0, "url": "http://example.com/"}
             )
 
-        self.assertRegexpMatches(ex.exception.message, "MySource")
+        self.assertRegex(ex.exception.args[0], "MySource")
 
     def test_fragments(self):
         config = taas.read_config(self.test_config)
@@ -147,7 +147,7 @@ class TestTaas(unittest.TestCase):
 
                 self.assertEqual(bulbasaur['id'], '1')
                 self.assertEqual(bulbasaur['name']['en'], 'Bulbasaur')
-                self.assertEqual(bulbasaur['name']['jp'], u'フシギソウ')
+                self.assertEqual(bulbasaur['name']['jp'], 'フシギソウ')
                 self.assertEqual(bulbasaur['characteristic']['weight']['kg'], '6.9')
                 self.assertEqual(bulbasaur['type'], 'grass')
 
