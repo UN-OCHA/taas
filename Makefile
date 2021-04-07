@@ -14,7 +14,7 @@ GIT=git
 SED=sed
 
 venv: requirements.txt
-	virtualenv --python=python3.6 --system-site-packages venv
+	virtualenv --python=python3.8 --system-site-packages venv
 	venv/bin/pip install --upgrade pip
 	venv/bin/pip install --upgrade appdirs
 	venv/bin/pip install --upgrade --editable .
