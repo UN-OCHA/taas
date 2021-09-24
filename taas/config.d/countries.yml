@@ -431,3 +431,163 @@ sources:
                 regex:
                     field: Regex
                     optional: True
+        beta-v4:
+            url: https://docs.google.com/spreadsheets/d/1NjSI2LaS3SqbgYc0HdD8oIb7lofGtiHgoKKATCpwVdY/edit#gid=1528390745
+            fragment_key: id
+            mapping:
+                id: ID
+
+                iso3:
+                    field: ISO 3166-1 Alpha 3-Codes
+                    optional: True
+
+                iso2:
+                    field: ISO 3166-1 Alpha 2-Codes
+                    optional: True
+
+                # Unofficial but generally used fields. These
+                # fail over to the ISO-codes if blank.
+                x-alpha-2:
+                    field:
+                        - x Alpha2 codes
+                        - ISO 3166-1 Alpha 2-Codes
+                    optional: True
+
+                x-alpha-3:
+                    field:
+                        - x Alpha3 codes
+                        - ISO 3166-1 Alpha 3-Codes
+                    optional: True
+
+                # IDs for other systems, in case anyone wants to match.
+                hrinfo_id:
+                    field: HRinfo ID
+                    optional: True
+
+                reliefweb_id:
+                    field: RW ID
+                    optional: True
+
+                fts_api_id:
+                    field: FTS API ID
+                    optional: True
+
+                # To keep compatibility with the prior HRinfo API.
+                admin_level:
+                    field: Admin Level
+                    optional: True
+
+                m49:
+                    field: m49 numerical code
+                    optional: True
+
+                # Label is now part of a JSON map, as we expect to add
+                # additional label terms in the future for
+                # interoperability with various services.
+
+                label.default: Preferred Term
+
+                label.humanitarianresponse:
+                    field: HRinfo Alt Term
+                    optional: True
+
+                label.reliefweb-short:
+                    field: RW Short Name
+                    optional: True
+
+                label.reliefweb-api:
+                    field: RW API Alt Term
+                    optional: True
+
+                label.m49:
+                    field: m49 Alt Term
+                    optional: True
+
+                label.fts:
+                    field: FTS Alt Term
+                    optional: True
+
+                label.iso:
+                    field: ISO Alt Term
+                    optional: True
+
+                label.unterm:
+                    field: UNTERM Alt Term
+                    optional: True
+
+                label.english-short:
+                    field: English Short
+                    optional: True
+
+                label.french-short:
+                    field: French Short
+                    optional: True
+
+                label.spanish-short:
+                    field: Spanish Short
+                    optional: True
+
+                label.russian-short:
+                    field: Russian Short
+                    optional: True
+
+                label.chinese-short:
+                    field: Chinese Short
+                    optional: True
+
+                label.arabic-short:
+                    field: Arabic Short
+                    optional: True
+
+                # Lat/Long are presented the same way as they
+                # are in HRinfo
+
+                geolocation.lat:
+                    field: Latitude
+                    optional: True
+
+                geolocation.lon:
+                    field: Longitude
+                    optional: True
+
+                unterm-list:
+                    field: Appears in UNTERM list
+                    optional: True
+
+                dgacm-list:
+                    field: Appears in DGACM list
+                    optional: True
+
+                # Region info
+
+                region.code:
+                    field: Region Code
+                    optional: True
+
+                region.label.default:
+                    field: Region Name
+                    optional: True
+
+                sub-region.code:
+                    field: Sub-region Code
+                    optional: True
+
+                sub-region.label.default:
+                    field: Sub-region Name
+                    optional: True
+
+                intermediate-region.code:
+                    field: Intermediate Region Code
+                    optional: True
+
+                intermediate-region.label.default:
+                    field: Intermediate Region Name
+                    optional: True
+
+                regex:
+                    field: Regex
+                    optional: True
+
+                currency:
+                    field: Currency
+                    optional: True
