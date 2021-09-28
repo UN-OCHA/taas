@@ -1,4 +1,4 @@
-FROM unocha/alpine-base-s6-python3:3.8
+FROM public.ecr.aws/unocha/python3-base-s6:3.8
 
 MAINTAINER Paul Fenwick "paul@humanitarianresponse.info"
 
