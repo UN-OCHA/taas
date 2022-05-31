@@ -3,6 +3,7 @@
 
 # We have some variables, used to tag the tag image. These can be overridden
 # by passing different versions on the CLI.
+REGISTRY=public.ecr.aws
 ORGANISATION=unocha
 IMAGE=taas
 VERSION=1
@@ -44,11 +45,12 @@ docker:
 		--build-arg VCS_URL=`$(GIT) config --get remote.origin.url | $(SED) 's#git@github.com:#https://github.com/#'` \
 		--build-arg BUILD_DATE=`$(DATE) -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		--build-arg VERSION=$(VERSION) \
+		--tag $(REGISTRY)/$(ORGANISATION)/$(IMAGE):$(VERSION) \
 		-f Dockerfile . | tee buildlog.txt
 
 tag:
 	$(eval IMAGE_HASH=$(shell tail -n 1 buildlog.txt | $(AWK) '{print $$NF}'))
-	docker tag $(IMAGE_HASH) $(ORGANISATION)/$(IMAGE):$(VERSION)
+	docker tag $(IMAGE_HASH) $(REGISTRY)/$(ORGANISATION)/$(IMAGE):$(VERSION)
 
 clean:
 	rm -rf venv *.pyc taas/*.pyc .cache tests/__pycache__ .coverage taas.egg-info htmlcov buildlog.txt
