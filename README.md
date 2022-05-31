@@ -67,7 +67,7 @@ $ docker run                                                \
     -e 'GIT_COMMITTER_EMAIL=paul@humanitarianresponse.info' \
     -e 'GIT_AUTHOR_NAME=BeepBoop'                           \
     -e 'GIT_AUTHOR_EMAIL=paul@humanitarianresponse.info'    \
-    unocha/taas:1 make update
+    public.ecr.aws/unocha/taas:1 make update
 ```
 
 Things to note:
