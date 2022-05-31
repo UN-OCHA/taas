@@ -16,8 +16,8 @@ SED=sed
 
 venv: requirements.txt
   # 3.6 appears to be required to pass the travis tests.
-  # 3.8 is the version used in the base docker image.
-	virtualenv --python=python3.8 --system-site-packages venv
+  # 3.9 is the version used in the base docker image.
+	virtualenv --python=python3.9 --system-site-packages venv
 	venv/bin/pip install --upgrade pip
 	venv/bin/pip install --upgrade appdirs
 	venv/bin/pip install --upgrade --editable .
