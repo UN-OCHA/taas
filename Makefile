@@ -14,7 +14,7 @@ DATE=date
 GIT=git
 SED=sed
 
-venv: requirements.txt
+venv: gitperms requirements.txt
   # 3.6 appears to be required to pass the travis tests.
   # 3.9 is the version used in the base docker image.
 	virtualenv --python=python3.9 --system-site-packages venv
@@ -51,6 +51,10 @@ docker:
 tag:
 	$(eval IMAGE_HASH=$(shell tail -n 1 buildlog.txt | $(AWK) '{print $$NF}'))
 	docker tag $(IMAGE_HASH) $(REGISTRY)/$(ORGANISATION)/$(IMAGE):$(VERSION)
+
+gitperms:
+	$(GIT) config --global --add safe.directory /tmp/taas
+	$(GIT) config --global --add safe.directory /tmp/taas-data
 
 clean:
 	rm -rf venv *.pyc taas/*.pyc .cache tests/__pycache__ .coverage taas.egg-info htmlcov buildlog.txt
