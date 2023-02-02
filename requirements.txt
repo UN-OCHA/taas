@@ -6,7 +6,7 @@ coverage==4.5.3
 cryptography==3.3.2
 enum34==1.1.6
 Flask>=0.12.3
-future==0.15.2
+future==0.18.3
 idna==2.8
 ipaddress==1.0.18
 itsdangerous==0.24
